@@ -54,6 +54,7 @@ MonoBehaviour:
   healthDrainSpeedMultiplier: 1
   fallDuration: 0.6
   fallEndScale: 0.05
+  playerVisual: {fileID: 4999298684043461031}
   shadowRenderer: {fileID: 8800333231083551320}
   darknessLerpSpeed: 5
 --- !u!61 &4138016262120776426
