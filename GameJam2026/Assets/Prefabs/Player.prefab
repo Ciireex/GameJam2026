@@ -48,10 +48,7 @@ MonoBehaviour:
   moveSpeed: 7
   maxHealthTime: 15
   healthSlider: {fileID: 0}
-  shadowVisual: {fileID: 8800333231083551320}
-  maskDarkness: 100
-  noMaskDarkness: 10
-  darknessTransitionSpeed: 5
+  shadowRenderer: {fileID: 8800333231083551320}
 --- !u!1 &4043298537460495619
 GameObject:
   m_ObjectHideFlags: 0

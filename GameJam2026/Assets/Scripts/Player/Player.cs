@@ -2,39 +2,35 @@ using UnityEngine;
 using System;
 public class Player : MonoBehaviour
 {
-    public event EventHandler OnPlayerDeath;
 
-
-    // Logic parameters for player movement and health
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float maxHealthTime = 15f;
     [SerializeField] private HealthSlider healthSlider;
 
-    // Visual effects for mask on/off
-    [SerializeField] private SpriteRenderer shadowVisual;
-    [SerializeField] private float maskDarkness = 100f;
-    [SerializeField] private float noMaskDarkness = 10f;
-    [SerializeField] private float darknessTransitionSpeed = 10f;
 
+    [SerializeField] private Renderer shadowRenderer;
+    [SerializeField] private float darknessLerpSpeed = 5f;
+    private Material shadowMaterial;
+    private const string DARKNESS_PARAM = "_DarknessStrength";
+    private float currentDarkness;
+    private float maskOnDarkness = 100f;
+    private float maskOffDarkness = 5f;
+
+    public event EventHandler OnPlayerDeath;
 
     private float currentHealthTime;
     private bool isMaskOn = true;
     private bool countdownActive;
 
-    private Material shadowMaterial;
-    private float targetDarkness;
 
     private void Start()
     {
-        shadowMaterial = shadowVisual.material;
-        shadowMaterial.SetFloat("DarknessStrength", noMaskDarkness);
-        Debug.Log(shadowMaterial.GetFloat("DarknessStrength"));
-
-        targetDarkness = noMaskDarkness;
-
+        currentDarkness = maskOnDarkness;
         currentHealthTime = maxHealthTime;
         healthSlider.SetMaxValue(maxHealthTime);
         GameInput.Instance.OnChangeMaskAction += GameInput_OnChangeMaskAction;
+
+        shadowMaterial = shadowRenderer.material;
     }
 
     private void Update()
@@ -74,9 +70,6 @@ public class Player : MonoBehaviour
     {
         ToggleMask();
         ToggleCountdown();
-
-        targetDarkness = IsMaskOn() ? maskDarkness : noMaskDarkness;
-
         Debug.Log("Mask is " + IsMaskOn());
     }
 
@@ -97,14 +90,11 @@ public class Player : MonoBehaviour
 
     private void UpdateShadowDarkness()
     {
-        float current = shadowMaterial.GetFloat("DarknessStrength");
-        float newValue = Mathf.Lerp(
-            current,
-            targetDarkness,
-            Time.deltaTime * darknessTransitionSpeed
-        );
+        float targetValue = isMaskOn ? maskOffDarkness : maskOnDarkness;
 
-        shadowMaterial.SetFloat("DarknessStrength", newValue);
+        currentDarkness = Mathf.Lerp(currentDarkness, targetValue, Time.deltaTime * darknessLerpSpeed);
+
+        shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
     }
 
 }
