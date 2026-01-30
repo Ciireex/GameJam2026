@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8544990008318362214}
   - {fileID: 4999298684043461031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,6 +52,8 @@ MonoBehaviour:
   maxHealthTime: 15
   healthSlider: {fileID: 0}
   healthDrainSpeedMultiplier: 1
+  fallDuration: 0.6
+  fallEndScale: 0.05
   shadowRenderer: {fileID: 8800333231083551320}
   darknessLerpSpeed: 5
 --- !u!61 &4138016262120776426
@@ -151,12 +154,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4043298537460495619}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4999298684043461031}
+  m_Father: {fileID: 8984496013435861334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8800333231083551320
 SpriteRenderer:
@@ -246,8 +249,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8544990008318362214}
+  m_Children: []
   m_Father: {fileID: 8984496013435861334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7556476616081258617

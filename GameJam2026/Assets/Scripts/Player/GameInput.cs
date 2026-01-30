@@ -19,7 +19,7 @@ public class GameInput : MonoBehaviour
         Instance = this;
 
         playerInputActions.Player.Enable();
-        playerInputActions.Player.Interact.performed += ChangeMask_performed; // E key, changes mask
+        playerInputActions.Player.Mask.performed += ChangeMask_performed; // E key, changes mask
 
     }
 
