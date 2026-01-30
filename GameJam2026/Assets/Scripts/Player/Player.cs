@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer shadowVisual;
     [SerializeField] private float maskDarkness = 100f;
     [SerializeField] private float noMaskDarkness = 10f;
-    [SerializeField] private float darknessTransitionSpeed = 5f;
+    [SerializeField] private float darknessTransitionSpeed = 10f;
 
 
     private float currentHealthTime;
@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     {
         shadowMaterial = shadowVisual.material;
         shadowMaterial.SetFloat("DarknessStrength", noMaskDarkness);
+        Debug.Log(shadowMaterial.GetFloat("DarknessStrength"));
+
         targetDarkness = noMaskDarkness;
 
         currentHealthTime = maxHealthTime;
