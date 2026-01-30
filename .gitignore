@@ -1,0 +1,93 @@
+# =======================================
+# Carpetas generadas por Unity (ignorar en cualquier subcarpeta)
+# =======================================
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emoryCaptures/
+**/[Rr]ecordings/
+**/Build*/
+**/Packages/com.unity.collab-proxy/
+
+# =======================================
+# Archivos de log
+*.log
+
+# Blender autosaves
+*.blend1
+*.blend1.meta
+
+# =======================================
+# IDEs y compiladores
+.vs/
+.gradle/
+.idea/
+.consulo/
+
+# Autogenerados por VS / Rider / Consulo
+ExportedObj/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# =======================================
+# Metadatos innecesarios
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# =======================================
+# Archivos de crash
+sysinfo.txt
+mono_crash.*
+
+# =======================================
+# Builds y paquetes
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# =======================================
+# Test Runner
+InitTestScene*.unity*
+
+# =======================================
+# Addressables por defecto
+/ServerData
+**/[Aa]ssets/StreamingAssets/aa*
+**/[Aa]ssets/AddressableAssetsData/link.xml*
+**/[Aa]ssets/Addressables_Temp*
+**/[Aa]ssets/AddressableAssetsData/*/*.bin*
+
+# =======================================
+# Visual Scripting auto-generated
+**/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+**/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+**/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+**/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+# =======================================
+# Auto-generated scenes by play mode tests
+**/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# =======================================
+# (Opcional) si no usas AssetStoreTools
+# **/[Aa]ssets/AssetStoreTools*
