@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float maxHealthTime = 15f;
     [SerializeField] private HealthSlider healthSlider;
-
+    [SerializeField] private float healthDrainSpeedMultiplier = 1f;
 
     [SerializeField] private Renderer shadowRenderer;
     [SerializeField] private float darknessLerpSpeed = 5f;
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         if (!countdownActive)
             return;
 
-        currentHealthTime -= Time.deltaTime;
+        currentHealthTime -= Time.deltaTime * healthDrainSpeedMultiplier;
         healthSlider.SetValue(currentHealthTime);
 
         if (currentHealthTime <= 0f)
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         Debug.Log("Mask is " + IsMaskOn());
     }
 
-    private bool IsMaskOn()
+    public bool IsMaskOn()
     {
         return isMaskOn;
     }
@@ -97,4 +97,8 @@ public class Player : MonoBehaviour
         shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
     }
 
+    public void SetHealthDrainSpeedMultiplier(float value)
+    {
+        healthDrainSpeedMultiplier = value;
+    }
 }
