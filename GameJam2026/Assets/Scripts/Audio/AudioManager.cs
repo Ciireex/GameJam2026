@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     [SerializeField] private AudioSource musicAudioSource;
     [SerializeField] private AudioMixer mixer;
+    public AudioMixer AudioMixer => mixer;
     [SerializeField] private AudioClip[] tracks;
     [SerializeField] private AudioClip[] sfx;
 
