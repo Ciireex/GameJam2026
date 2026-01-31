@@ -27,6 +27,18 @@ MonoBehaviour:
     m_Key: exit_text
     m_Metadata:
       m_Items: []
+  - m_Id: 224310982598656
+    m_Key: resume_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224386706563072
+    m_Key: pause_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224457242173440
+    m_Key: mainmenu_text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

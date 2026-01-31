@@ -1,8 +1,3 @@
-/*  This component exists once in the scene (singleton)
-    and does not get destroyed when scene loads.
-    It allows to transition from one scene to another a screen 
-    animation with the method TransitionAndLoadScene.
-*/
 using System;
 using System.Collections;
 using UnityEngine;
@@ -10,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public static SceneController Instance;
+    public static SceneController Instance { get; private set; }
+
     public event Action OnSceneTransitionStart;
     public event Action OnSceneTransitionComplete;
 
@@ -19,56 +15,95 @@ public class SceneController : MonoBehaviour
     [SerializeField] private float transitionAnimationTime = 0.5f;
     [SerializeField] private float startPosition = -1920f;
 
-    public void Awake()
+    private bool isTransitioning;
+
+    private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public void TransitionAndLoadScene(int sceneIndex)
     {
+        // Si alguien intenta usarlo mientras se está destruyendo o duplicando, lo evitamos.
+        if (this == null) return;
+
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (isTransitioning)
+            return;
+
         StartCoroutine(DoSceneTransition(sceneIndex));
     }
 
     private IEnumerator DoSceneTransition(int sceneIndex)
     {
+        isTransitioning = true;
+
         OnSceneTransitionStart?.Invoke();
-        yield return StartCoroutine(TransitionEnterAnimation());
+
+        // Si el objeto gráfico no existe, cargamos directo para no romper.
+        if (transitionGraphics != null)
+            yield return StartCoroutine(TransitionEnterAnimation());
+
         SceneManager.LoadScene(sceneIndex);
-        yield return StartCoroutine(TransitionExitAnimation());
+
+        if (transitionGraphics != null)
+            yield return StartCoroutine(TransitionExitAnimation());
+
         OnSceneTransitionComplete?.Invoke();
+
+        isTransitioning = false;
     }
 
     private IEnumerator TransitionEnterAnimation()
     {
-        // Do transition enter animation
         float elapsedTime = 0f;
+
         while (elapsedTime < transitionAnimationTime)
         {
-            transitionGraphics.transform.localPosition = new Vector3(Mathf.Lerp(startPosition, 0f , elapsedTime/transitionAnimationTime), 0, 0);
-            elapsedTime += Time.deltaTime;
+            if (transitionGraphics == null) yield break;
+
+            transitionGraphics.transform.localPosition =
+                new Vector3(Mathf.Lerp(startPosition, 0f, elapsedTime / transitionAnimationTime), 0, 0);
+
+            elapsedTime += Time.unscaledDeltaTime; // recomendable si pausas con timeScale
             yield return null;
         }
-        transitionGraphics.transform.localPosition = Vector3.zero;
+
+        if (transitionGraphics != null)
+            transitionGraphics.transform.localPosition = Vector3.zero;
     }
+
     private IEnumerator TransitionExitAnimation()
     {
-        // Do transition exit animation
         float elapsedTime = 0f;
+
         while (elapsedTime < transitionAnimationTime)
         {
-            transitionGraphics.transform.localPosition = new Vector3(Mathf.Lerp(0, -startPosition , elapsedTime/transitionAnimationTime), 0, 0);
-            elapsedTime += Time.deltaTime;
+            if (transitionGraphics == null) yield break;
+
+            transitionGraphics.transform.localPosition =
+                new Vector3(Mathf.Lerp(0f, -startPosition, elapsedTime / transitionAnimationTime), 0, 0);
+
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
-        transitionGraphics.transform.localPosition = new Vector3(-startPosition, 0, 0);
+
+        if (transitionGraphics != null)
+            transitionGraphics.transform.localPosition = new Vector3(-startPosition, 0, 0);
     }
 }

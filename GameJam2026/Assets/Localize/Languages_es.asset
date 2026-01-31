@@ -30,6 +30,18 @@ MonoBehaviour:
     m_Localized: Salir
     m_Metadata:
       m_Items: []
+  - m_Id: 224310982598656
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224386706563072
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224457242173440
+    m_Localized: "Men\xFA principal"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
