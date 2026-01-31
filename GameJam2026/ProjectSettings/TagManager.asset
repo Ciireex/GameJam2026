@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FallingTilemap
   - Spike
+  - URP
   layers:
   - Default
   - TransparentFX
