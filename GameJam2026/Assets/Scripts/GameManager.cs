@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Player_OnPlayerDeath(object sender, System.EventArgs e)
     {
-        GameOver();
+        //GameOver();
     }
 
     private void GameOver() 
