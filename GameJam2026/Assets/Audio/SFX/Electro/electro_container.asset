@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8872002784000812763
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_11_{-8872002784000812763}
+  m_AudioClip: {fileID: 8300000, guid: c6267e5fd282a4485a370b047187ebc5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5556734826830680718
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_2_{-5556734826830680718}
+  m_AudioClip: {fileID: 8300000, guid: ac8ee5829a233422fa255747559a01ca, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-699102967741571423
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_7_{-699102967741571423}
+  m_AudioClip: {fileID: 8300000, guid: a1f80a6a06ddc4154a1356efd322dcb8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1463495998980781867
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_6_{1463495998980781867}
+  m_AudioClip: {fileID: 8300000, guid: 8202c639ea495410eb8cbbde2323ccf1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1956910255043360976
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_3_{1956910255043360976}
+  m_AudioClip: {fileID: 8300000, guid: 4fc33d65e38434607b36fee45aec3aab, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3819138930394449809
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_8_{3819138930394449809}
+  m_AudioClip: {fileID: 8300000, guid: 3f23dbf940a2d4f148f31b05974b1f20, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5564604613454547581
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_10_{5564604613454547581}
+  m_AudioClip: {fileID: 8300000, guid: 77396a27204ad412c8b5dcd16cbb9ba6, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5635711296966284576
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_4_{5635711296966284576}
+  m_AudioClip: {fileID: 8300000, guid: 3bab4fc9720a742608b00272777dcca1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_container
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -8.888888, y: 0}
+  m_PitchRandomizationRange: {x: -59.259308, y: 192.59262}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0.4}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 6562903773462905670}
+  - {fileID: -5556734826830680718}
+  - {fileID: 1956910255043360976}
+  - {fileID: 5635711296966284576}
+  - {fileID: 1463495998980781867}
+  - {fileID: -699102967741571423}
+  - {fileID: 3819138930394449809}
+  - {fileID: 7257565705260211247}
+  - {fileID: 5564604613454547581}
+  - {fileID: -8872002784000812763}
+  m_AvoidRepeatingLast: 5
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &6562903773462905670
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_1_{6562903773462905670}
+  m_AudioClip: {fileID: 8300000, guid: 1bdfb241037cb4c43b02040fa885291e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &7257565705260211247
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_9_{7257565705260211247}
+  m_AudioClip: {fileID: 8300000, guid: 73a77bb31d94343cc8f9267bd8e9fb94, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
