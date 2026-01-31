@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
         {
             FallAndDie();
         }
-        if (other.CompareTag("Spikes"))
+        if (other.CompareTag("Spike"))
         {
             Kill();
         }
