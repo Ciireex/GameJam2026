@@ -124,6 +124,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7838851199066834894, guid: 637beab40f6416d4982eb590608d6e32, type: 3}
   m_PrefabInstance: {fileID: 4208885987116726098}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &417242615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6718159041066317616, guid: 33f8a76e497a75e4898707551814f862, type: 3}
+  m_PrefabInstance: {fileID: 683364977995394992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbd286aa73e4264c8891d75e50eb022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WipeController
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +960,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8551745672918425486, guid: 1af4ddcaa0df3af4baeb4f8a998ba51a, type: 3}
+      propertyPath: wipeEffect
+      value: 
+      objectReference: {fileID: 417242615}
     - target: {fileID: 8551745672918425486, guid: 1af4ddcaa0df3af4baeb4f8a998ba51a, type: 3}
       propertyPath: healthSlider
       value: 
