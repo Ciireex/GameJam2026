@@ -245,6 +245,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    private Color subtleGreen = new Color(0.3f, 1f, 0.3f);
+    private void UpdatePlayerColor()
+    {
+        if (playerSpriteRenderer == null)
+            return;
+
+        float healthPercent = Mathf.Clamp01(currentHealthTime / maxHealthTime);
+
+        // Stronger green, but not full pure green
+        
+
+        // Interpolate between white and green depending on health
+        Color targetColor = Color.Lerp(subtleGreen, Color.white, healthPercent);
+
+        playerSpriteRenderer.color = targetColor;
+    }
+
+
     private void HandleHealthCountdown()
     {
         if (!countdownActive || isDead)
@@ -252,6 +270,8 @@ public class Player : MonoBehaviour
 
         currentHealthTime -= Time.deltaTime * healthDrainSpeedMultiplier;
         healthSlider.SetValue(currentHealthTime);
+
+        UpdatePlayerColor();
 
         if (currentHealthTime <= 0f)
         {
