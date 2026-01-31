@@ -10,9 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthSlider healthSlider;
     [SerializeField] private float healthDrainSpeedMultiplier = 1f;
 
-    // NEW: Spawn point arrastrable + respawn delay
     [Header("Spawn / Respawn")]
-    [Tooltip("Arrastra aqu� el punto donde debe reaparecer el jugador.")]
+    [Tooltip("Arrastra aquí el punto donde debe reaparecer el jugador.")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float respawnDelay = 1f;
 
@@ -26,40 +25,47 @@ public class Player : MonoBehaviour
     [Range(0, 30)][SerializeField] private float maskOffRadius = 15f;
     [SerializeField] private float changeMaskAnimationDuration = 0.5f;
 
+    [Header("Start Intro (Wipe + Light)")]
+    [Tooltip("Duración aproximada del wipe AnimateIn() para esperar antes de animar la luz.")]
+    [SerializeField] private float wipeInDuration = 0.6f;
+
     [Header("PlayerVisual")]
-    // NEW: Solo se encoge el visual
     [SerializeField] private Transform playerVisual;
+
+    [Header("Wipe transition")]
+    public WipeController wipeEffect;
 
     private bool isFalling;
     private Vector3 originalVisualScale;
 
     private bool isDead;
-
     public event EventHandler OnPlayerDeath;
 
     private float currentHealthTime;
     private bool isMaskOn = true;
     private bool countdownActive;
 
-    // Movement (Rigidbody2D)
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
-    // NEW: para no lanzar respawn dos veces
     private bool isRespawning;
+
+    // NEW: para no acumular coroutines de luz
+    private Coroutine lightRoutine;
+
+    // NEW: evita que el jugador pueda spamear máscara durante la intro
+    private bool introPlaying;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // NEW: si no est� asignado, intenta encontrarlo por nombre
         if (playerVisual == null)
         {
             Transform t = transform.Find("PlayerVisual");
             if (t != null) playerVisual = t;
         }
 
-        // NEW: guardar escala original del visual (no del root)
         if (playerVisual != null)
             originalVisualScale = playerVisual.localScale;
 
@@ -68,13 +74,9 @@ public class Player : MonoBehaviour
         healthSlider.SetMaxValue(maxHealthTime);
         healthSlider.SetValue(currentHealthTime);
 
-        // Set light radius to whatever mask state we have
-        UpdateLightRadius();
-
         GameInput.Instance.OnChangeMaskAction += GameInput_OnChangeMaskAction;
         GameManager.Instance.OnTimeIsUp += GameManager_OnTimeIsUp;
 
-        // NEW: si no has arrastrado spawnPoint, por defecto usa la posici�n inicial del player
         if (spawnPoint == null)
         {
             GameObject sp = new GameObject("SpawnPoint_Runtime");
@@ -82,6 +84,43 @@ public class Player : MonoBehaviour
             sp.transform.rotation = transform.rotation;
             spawnPoint = sp.transform;
         }
+
+        // Estado inicial: máscara puesta (normal) y sin contador.
+        isMaskOn = true;
+        countdownActive = false;
+
+        // Asegura luz en estado normal ANTES de la intro (para evitar saltos raros)
+        if (spotLight != null)
+            spotLight.pointLightOuterRadius = maskOnRadius;
+
+        // Intro: Wipe + animación de luz (abre y vuelve a cerrar)
+        StartCoroutine(IntroSequence());
+    }
+
+    private IEnumerator IntroSequence()
+    {
+        introPlaying = true;
+
+        // 1) Wipe in
+        if (wipeEffect != null)
+            wipeEffect.AnimateIn();
+
+        // Espera a que acabe el wipe (ajusta wipeInDuration en inspector)
+        if (wipeInDuration > 0f)
+            yield return new WaitForSeconds(wipeInDuration);
+
+        // 2) "Como si te quitaras la máscara": abre la luz
+        yield return AnimateLightTo(maskOffRadius, changeMaskAnimationDuration);
+
+        // 3) Vuelve a estado normal con máscara puesta
+        isMaskOn = true;
+        yield return AnimateLightTo(maskOnRadius, changeMaskAnimationDuration);
+
+        // Asegura estado final
+        if (spotLight != null)
+            spotLight.pointLightOuterRadius = maskOnRadius;
+
+        introPlaying = false;
     }
 
     private void Update()
@@ -130,17 +169,20 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnChangeMaskAction(object sender, EventArgs e)
     {
+        // Bloquea el cambio durante la intro para evitar estados raros
+        if (introPlaying || isDead || isFalling)
+            return;
+
         ToggleMask();
         ToggleCountdown();
 
-        // Light
         UpdateLightRadius();
 
-        // Health Slide Shader
         if (IsMaskOn())
             healthSlider.SetShaderShake(0.1f);
         else
             healthSlider.SetShaderShake(1f);
+
         Debug.Log("Mask is " + IsMaskOn());
     }
 
@@ -162,19 +204,46 @@ public class Player : MonoBehaviour
     private void UpdateLightRadius()
     {
         float targetOuterRadius = IsMaskOn() ? maskOnRadius : maskOffRadius;
-        StartCoroutine(ChangeLightRadiusCoroutine(targetOuterRadius, changeMaskAnimationDuration));
+
+        // NEW: para no acumular coroutines
+        if (lightRoutine != null)
+            StopCoroutine(lightRoutine);
+
+        lightRoutine = StartCoroutine(ChangeLightRadiusCoroutine(targetOuterRadius, changeMaskAnimationDuration));
+    }
+
+    // NEW: helper para "esperar" la animación de luz en la intro
+    private IEnumerator AnimateLightTo(float targetOuterRadius, float duration)
+    {
+        // Si hay una anim previa en curso, la paramos
+        if (lightRoutine != null)
+        {
+            StopCoroutine(lightRoutine);
+            lightRoutine = null;
+        }
+
+        // Ejecuta y espera
+        yield return ChangeLightRadiusCoroutine(targetOuterRadius, duration);
     }
 
     private IEnumerator ChangeLightRadiusCoroutine(float targetOuterRadius, float duration)
     {
+        if (spotLight == null)
+            yield break;
+
         float elapsedTime = 0f;
         float startRadius = spotLight.pointLightOuterRadius;
+
+        // Evita división por 0
+        duration = Mathf.Max(0.0001f, duration);
+
         while (elapsedTime < duration)
         {
             spotLight.pointLightOuterRadius = Mathf.Lerp(startRadius, targetOuterRadius, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
         spotLight.pointLightOuterRadius = targetOuterRadius;
     }
 
@@ -207,7 +276,6 @@ public class Player : MonoBehaviour
 
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
 
-        // NEW: respawn desde aqu�
         if (!isRespawning)
             StartCoroutine(RespawnRoutine());
     }
@@ -225,13 +293,11 @@ public class Player : MonoBehaviour
         isFalling = true;
         countdownActive = false;
 
-        // NEW: encoger solo el visual
         Transform visual = playerVisual != null ? playerVisual : transform;
 
         Vector3 startScale = visual.localScale;
         Vector3 endScale;
 
-        // Si tenemos escala original guardada del visual, �sala; si no, usa la actual
         if (playerVisual != null)
             endScale = originalVisualScale * fallEndScale;
         else
@@ -274,17 +340,21 @@ public class Player : MonoBehaviour
         healthSlider.SetMaxValue(maxHealthTime);
         healthSlider.SetValue(currentHealthTime);
 
-        // Reset visual (por si muri� encogido)
+        // Reset visual (por si murió encogido)
         if (playerVisual != null)
         {
             playerVisual.localScale = originalVisualScale;
         }
 
-        // FORZAR M�SCARA ON AL RESPAWNEAR
+        // FORZAR MÁSCARA ON AL RESPAWNEAR
         isMaskOn = true;
 
-        // (Opcional) �Quieres que el contador se reinicie apagado?
+        // Reinicia contador apagado
         countdownActive = false;
+
+        // Asegura luz normal tras respawn
+        if (spotLight != null)
+            spotLight.pointLightOuterRadius = maskOnRadius;
 
         // Volver a estado vivo
         isDead = false;
@@ -303,5 +373,4 @@ public class Player : MonoBehaviour
     {
         healthDrainSpeedMultiplier = multiplier;
     }
-
 }
