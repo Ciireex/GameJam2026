@@ -44,6 +44,23 @@ public class Player : MonoBehaviour
     [Header("Wipe transition")]
     public WipeController wipeEffect;
 
+    // =========================
+    // NEW: ANIMACIONES (BlendTrees)
+    // =========================
+    [Header("Animations (BlendTrees)")]
+    [Tooltip("Animator que controla las animaciones (normalmente está en PlayerVisual).")]
+    [SerializeField] private Animator animator;
+
+    [Tooltip("Umbral para considerar movimiento (evita parpadeo idle/walk).")]
+    [SerializeField] private float animMoveThreshold = 0.01f;
+
+    // Recordar última dirección para que el idle mire bien
+    private Vector2 lastAnimDir = Vector2.down;
+
+    // NEW: SpriteRenderer para flip (más robusto que localScale)
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
+    // =========================
+
     private bool isFalling;
     private Vector3 originalVisualScale;
 
@@ -76,6 +93,20 @@ public class Player : MonoBehaviour
             if (t != null) playerVisual = t;
         }
 
+        // NEW: intenta encontrar animator si no está asignado
+        if (animator == null)
+        {
+            if (playerVisual != null) animator = playerVisual.GetComponent<Animator>();
+            if (animator == null) animator = GetComponent<Animator>();
+        }
+
+        // NEW: intenta encontrar el SpriteRenderer si no está asignado
+        if (playerSpriteRenderer == null)
+        {
+            if (playerVisual != null) playerSpriteRenderer = playerVisual.GetComponentInChildren<SpriteRenderer>();
+            if (playerSpriteRenderer == null) playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
         if (playerVisual != null)
             originalVisualScale = playerVisual.localScale;
 
@@ -103,6 +134,9 @@ public class Player : MonoBehaviour
         if (spotLight != null)
             spotLight.pointLightOuterRadius = maskOffRadius;
 
+        // NEW: inicializa parámetros animator al arrancar (para que idle tenga dirección)
+        UpdateAnimatorParams(Vector2.zero);
+
         // Intro: Wipe + animación de luz (abre, espera y vuelve a cerrar)
         StartCoroutine(IntroSequence());
     }
@@ -112,7 +146,8 @@ public class Player : MonoBehaviour
         introPlaying = true;
 
         // 1) Wipe in
-        if (wipeEffect != null) { 
+        if (wipeEffect != null)
+        {
             wipeEffect.AnimateIn();
             Debug.Log("Wipe in started");
         }
@@ -148,6 +183,9 @@ public class Player : MonoBehaviour
             moveInput = Vector2.zero;
         }
 
+        // NEW: actualizar parámetros del Animator cada frame
+        UpdateAnimatorParams(moveInput);
+
         HandleHealthCountdown();
     }
 
@@ -159,10 +197,52 @@ public class Player : MonoBehaviour
         Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
         if (!isMaskOn)
         {
-             // Si la máscara está puesta, el jugador se mueve a la mitad de velocidad
+            // Si la máscara está puesta, el jugador se mueve a la mitad de velocidad
             newPos = rb.position + moveInput * (moveSpeed * 0.7f) * Time.fixedDeltaTime;
         }
         rb.MovePosition(newPos);
+    }
+
+    // =========================
+    // NEW: LÓGICA DE ANIMACIÓN PARA BLEND TREES
+    // Usa parámetros: Speed, DirX, DirY, MaskOn
+    // Convierte input normalizado a 4 direcciones puras para que encaje con (0,±1)(±1,0)
+    // =========================
+    private void UpdateAnimatorParams(Vector2 input)
+    {
+        if (animator == null) return;
+
+        float speed = input.magnitude;
+        animator.SetFloat("Speed", speed);
+
+        if (speed > animMoveThreshold)
+        {
+            Vector2 dir;
+
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+                dir = new Vector2(Mathf.Sign(input.x), 0f);
+            else
+                dir = new Vector2(0f, Mathf.Sign(input.y));
+
+            lastAnimDir = dir;
+
+            animator.SetFloat("DirX", dir.x);
+            animator.SetFloat("DirY", dir.y);
+        }
+        else
+        {
+            animator.SetFloat("DirX", lastAnimDir.x);
+            animator.SetFloat("DirY", lastAnimDir.y);
+        }
+
+        animator.SetBool("MaskOn", isMaskOn);
+
+        // FLIP izquierda/derecha usando SpriteRenderer (más robusto que localScale)
+        if (playerSpriteRenderer != null)
+        {
+            if (lastAnimDir.x < 0f) playerSpriteRenderer.flipX = true;
+            else if (lastAnimDir.x > 0f) playerSpriteRenderer.flipX = false;
+        }
     }
 
     private void HandleHealthCountdown()
@@ -203,6 +283,9 @@ public class Player : MonoBehaviour
 
         if (healthSlider)
             healthSlider.ChangeHealthStateIcon();
+
+        // NEW: refresca el bool MaskOn al momento
+        UpdateAnimatorParams(moveInput);
 
         Debug.Log("Mask is " + IsMaskOn());
     }
