@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AcidSplashIdle
+  m_Name: Bubbling
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,22 +22,22 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -3441186935906519856, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
-    - time: 0.16666667
+    - time: 0.51666665
       value: {fileID: 2965306978324144427, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
-    - time: 0.41666666
+    - time: 1.0333333
       value: {fileID: 4459156777123085728, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
-    - time: 0.5833333
+    - time: 1.55
       value: {fileID: -8680160141810718953, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
-    - time: 0.8333333
+    - time: 2.0666666
       value: {fileID: 1937522403748306378, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
-    - time: 1
+    - time: 2.5833333
       value: {fileID: 2479874516328244245, guid: 916fa4f3757981542b5604dab615ddcd, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0833334
+    m_StopTime: 2.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
