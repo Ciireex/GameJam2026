@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
@@ -15,14 +13,30 @@ public class GameInput : MonoBehaviour
 
     private void Awake()
     {
-        playerInputActions = new InputSystem_Actions();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
+        playerInputActions = new InputSystem_Actions();
         playerInputActions.Player.Enable();
-        playerInputActions.Player.Mask.performed += ChangeMask_performed; // E key, changes mask
-        playerInputActions.Player.Pause.performed += Pause_performed; // Esc key, pauses game
 
+        playerInputActions.Player.Mask.performed += ChangeMask_performed;
+        playerInputActions.Player.Pause.performed += Pause_performed;
+    }
+
+    private void OnDestroy()
+    {
+        if (playerInputActions != null)
+        {
+            playerInputActions.Player.Mask.performed -= ChangeMask_performed;
+            playerInputActions.Player.Pause.performed -= Pause_performed;
+            playerInputActions.Disable();
+        }
     }
 
     private void Pause_performed(InputAction.CallbackContext obj)
@@ -30,7 +44,7 @@ public class GameInput : MonoBehaviour
         OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
-    private void ChangeMask_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void ChangeMask_performed(InputAction.CallbackContext obj)
     {
         OnChangeMaskAction?.Invoke(this, EventArgs.Empty);
     }
@@ -38,9 +52,6 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovmentVectorNormalized()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-
-        inputVector = inputVector.normalized;
-
-        return inputVector;
+        return inputVector.normalized;
     }
 }

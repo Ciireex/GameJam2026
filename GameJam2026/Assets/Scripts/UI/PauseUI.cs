@@ -9,10 +9,20 @@ public class PauseUI : MonoBehaviour
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button mainMenuButton;
 
+    private void OnEnable()
+    {
+        if (GameInput.Instance != null)
+            GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
+    }
+
+    private void OnDisable()
+    {
+        if (GameInput.Instance != null)
+            GameInput.Instance.OnPauseAction -= GameInput_OnPauseAction;
+    }
+
     private void Start()
     {
-        GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
-
         resumeButton.onClick.AddListener(Resume);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
 
@@ -51,7 +61,7 @@ public class PauseUI : MonoBehaviour
 
     private void GoToMainMenu()
     {
-        Time.timeScale = 1f; // important before scene change
-        SceneManager.LoadScene("Scenes/MainMenu"); // make sure name matches
+        Time.timeScale = 1f; // importante antes de cambiar escena
+        SceneManager.LoadScene("Scenes/MainMenu"); // asegúrate que coincide
     }
 }
