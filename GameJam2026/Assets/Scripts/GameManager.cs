@@ -58,6 +58,13 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             player.OnPlayerDeath += Player_OnPlayerDeath;
+
+            // APLICAR DRAIN DEL NIVEL (NUEVO)
+            LevelSettings settings = FindFirstObjectByType<LevelSettings>();
+            if (settings != null)
+            {
+                player.SetDrainMultiplier(settings.drainMultiplier);
+            }
         }
         else
         {

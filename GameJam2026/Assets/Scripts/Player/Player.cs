@@ -277,4 +277,9 @@ public class Player : MonoBehaviour
         isRespawning = false;
     }
 
+    public void SetDrainMultiplier(float multiplier)
+    {
+        healthDrainSpeedMultiplier = multiplier;
+    }
+
 }
