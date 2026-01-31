@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     // evita que el jugador pueda spamear máscara durante la intro
     private bool introPlaying;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -138,7 +139,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!isDead && !isFalling)
+        if (!isDead && !isFalling && !introPlaying)
         {
             moveInput = GameInput.Instance.GetMovmentVectorNormalized();
         }
@@ -156,6 +157,11 @@ public class Player : MonoBehaviour
             return;
 
         Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
+        if (!isMaskOn)
+        {
+             // Si la máscara está puesta, el jugador se mueve a la mitad de velocidad
+            newPos = rb.position + moveInput * (moveSpeed * 0.7f) * Time.fixedDeltaTime;
+        }
         rb.MovePosition(newPos);
     }
 
