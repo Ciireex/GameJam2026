@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float healthDrainSpeedMultiplier = 1f;
 
     [Header("Spawn / Respawn")]
-    [Tooltip("Arrastra aquí el punto donde debe reaparecer el jugador.")]
+    [Tooltip("DEPRECATED: Ya no se usa. El respawn recarga la escena con SceneController.")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float respawnDelay = 1f;
 
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
     [Header("Start Intro (Wipe + Light)")]
     [Tooltip("Duración aproximada del wipe AnimateIn() para esperar antes de animar la luz.")]
     [SerializeField] private float wipeInDuration = 0.6f;
+
+    [Header("Death Outro (Wipe Out)")]
+    [Tooltip("Tiempo que tarda el wipe AnimateOut() antes de recargar la escena.")]
+    [SerializeField] private float wipeOutDuration = 0.6f;
 
     [Header("Intro Timing")]
     [Tooltip("Delay entre la luz abierta (máscara quitada) y volver a máscara puesta.")]
@@ -54,10 +59,10 @@ public class Player : MonoBehaviour
 
     private bool isRespawning;
 
-    // NEW: para no acumular coroutines de luz
+    // para no acumular coroutines de luz
     private Coroutine lightRoutine;
 
-    // NEW: evita que el jugador pueda spamear máscara durante la intro
+    // evita que el jugador pueda spamear máscara durante la intro
     private bool introPlaying;
 
     private void Start()
@@ -93,37 +98,36 @@ public class Player : MonoBehaviour
         isMaskOn = true;
         countdownActive = false;
 
-        // Asegura luz en estado normal ANTES de la intro (para evitar saltos raros)
+        // Asegura luz en estado inicial ANTES de la intro
         if (spotLight != null)
             spotLight.pointLightOuterRadius = maskOffRadius;
 
-        // Intro: Wipe + animación de luz (abre, espera 1s y vuelve a cerrar)
+        // Intro: Wipe + animación de luz (abre, espera y vuelve a cerrar)
         StartCoroutine(IntroSequence());
     }
 
     private IEnumerator IntroSequence()
     {
         introPlaying = true;
+
         // 1) Wipe in
         if (wipeEffect != null)
             wipeEffect.AnimateIn();
 
-        // Espera a que acabe el wipe (ajusta wipeInDuration en inspector)
         if (wipeInDuration > 0f)
             yield return new WaitForSeconds(wipeInDuration);
 
-        // 2) "Como si te quitaras la máscara": abre la luz
+        // 2) Abre luz
         yield return AnimateLightTo(maskOffRadius, changeMaskAnimationDuration);
 
-        // 3) Delay dramático antes de volver a máscara puesta
+        // 3) Delay
         if (delayBeforeMaskBack > 0f)
             yield return new WaitForSeconds(delayBeforeMaskBack);
 
-        // 4) Vuelve a estado normal con máscara puesta
+        // 4) Vuelve a máscara puesta
         isMaskOn = true;
         yield return AnimateLightTo(maskOnRadius, changeMaskAnimationDuration);
 
-        // Asegura estado final
         if (spotLight != null)
             spotLight.pointLightOuterRadius = maskOnRadius;
 
@@ -176,7 +180,6 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnChangeMaskAction(object sender, EventArgs e)
     {
-        // Bloquea el cambio durante la intro para evitar estados raros
         if (introPlaying || isDead || isFalling)
             return;
 
@@ -212,24 +215,20 @@ public class Player : MonoBehaviour
     {
         float targetOuterRadius = IsMaskOn() ? maskOnRadius : maskOffRadius;
 
-        // NEW: para no acumular coroutines
         if (lightRoutine != null)
             StopCoroutine(lightRoutine);
 
         lightRoutine = StartCoroutine(ChangeLightRadiusCoroutine(targetOuterRadius, changeMaskAnimationDuration));
     }
 
-    // NEW: helper para "esperar" la animación de luz en la intro
     private IEnumerator AnimateLightTo(float targetOuterRadius, float duration)
     {
-        // Si hay una anim previa en curso, la paramos
         if (lightRoutine != null)
         {
             StopCoroutine(lightRoutine);
             lightRoutine = null;
         }
 
-        // Ejecuta y espera
         yield return ChangeLightRadiusCoroutine(targetOuterRadius, duration);
     }
 
@@ -241,7 +240,6 @@ public class Player : MonoBehaviour
         float elapsedTime = 0f;
         float startRadius = spotLight.pointLightOuterRadius;
 
-        // Evita división por 0
         duration = Mathf.Max(0.0001f, duration);
 
         while (elapsedTime < duration)
@@ -333,47 +331,28 @@ public class Player : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        yield return new WaitForSeconds(respawnDelay);
+        // 1) Dispara el wipe OUT al morir
+        if (wipeEffect != null)
+            wipeEffect.AnimateOut();
 
-        // Teleport al punto de spawn
-        if (spawnPoint != null)
+        // 2) Espera el tiempo del wipe out (o respawnDelay, lo que quieras usar)
+        float waitTime = Mathf.Max(respawnDelay, wipeOutDuration);
+        if (waitTime > 0f)
+            yield return new WaitForSeconds(waitTime);
+
+        // 3) Recarga escena actual por índice (con SceneController si existe)
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (SceneController.Instance != null)
         {
-            transform.position = spawnPoint.position;
-            if (rb != null) rb.position = spawnPoint.position;
+            SceneController.Instance.TransitionAndLoadScene(sceneIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneIndex);
         }
 
-        // Reset vida + UI
-        currentHealthTime = maxHealthTime;
-        healthSlider.SetMaxValue(maxHealthTime);
-        healthSlider.SetValue(currentHealthTime);
-
-        // Reset visual (por si murió encogido)
-        if (playerVisual != null)
-        {
-            playerVisual.localScale = originalVisualScale;
-        }
-
-        // FORZAR MÁSCARA ON AL RESPAWNEAR
-        isMaskOn = true;
-
-        // Reinicia contador apagado
-        countdownActive = false;
-
-        // Asegura luz normal tras respawn
-        if (spotLight != null)
-            spotLight.pointLightOuterRadius = maskOnRadius;
-
-        // Volver a estado vivo
-        isDead = false;
-        isFalling = false;
-
-        // Reactivar movimiento/colisiones
-        if (rb != null) rb.simulated = true;
-        if (col != null) col.enabled = true;
-
-        isRespawning = false;
-
-        GameManager.Instance.StartTimer();
+        // No hace falta reactivar nada: se recarga la escena
     }
 
     public void SetDrainMultiplier(float multiplier)

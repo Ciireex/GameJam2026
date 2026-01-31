@@ -12,7 +12,7 @@ public class SceneController : MonoBehaviour
 
     [Header("TransitionAnimation")]
     [SerializeField] private GameObject transitionGraphics;
-    [SerializeField] private float transitionAnimationTime = 0.5f;
+    [SerializeField] private float transitionAnimationTime = 0.8f;
     [SerializeField] private float startPosition = -1920f;
 
     private bool isTransitioning;
@@ -97,7 +97,7 @@ public class SceneController : MonoBehaviour
             if (transitionGraphics == null) yield break;
 
             transitionGraphics.transform.localPosition =
-                new Vector3(Mathf.Lerp(0f, -startPosition, elapsedTime / transitionAnimationTime), 0, 0);
+                new Vector3(Mathf.Lerp(0f, -startPosition, elapsedTime / (transitionAnimationTime * 2)), 0, 0);
 
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
