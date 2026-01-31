@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [Header("Lighting")]
     [SerializeField] private Light2D spotLight;
-    [Range(0, 30)][SerializeField] private float maskOnRadius = 1f;
+    [Range(0, 30)][SerializeField] private float maskOnRadius = 1.5f;
     [Range(0, 30)][SerializeField] private float maskOffRadius = 15f;
     [SerializeField] private float changeMaskAnimationDuration = 0.5f;
 
@@ -473,4 +473,15 @@ public class Player : MonoBehaviour
     {
         healthDrainSpeedMultiplier = multiplier;
     }
+
+    private void OnDestroy()
+    {
+        if (GameInput.Instance != null)
+            GameInput.Instance.OnChangeMaskAction -= GameInput_OnChangeMaskAction;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnTimeIsUp -= GameManager_OnTimeIsUp;
+    }
+
+
 }
