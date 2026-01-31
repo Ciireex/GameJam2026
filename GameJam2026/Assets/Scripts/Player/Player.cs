@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
     [Tooltip("Duración aproximada del wipe AnimateIn() para esperar antes de animar la luz.")]
     [SerializeField] private float wipeInDuration = 0.6f;
 
+    [Header("Intro Timing")]
+    [Tooltip("Delay entre la luz abierta (máscara quitada) y volver a máscara puesta.")]
+    [SerializeField] private float delayBeforeMaskBack = 1f;
+
     [Header("PlayerVisual")]
     [SerializeField] private Transform playerVisual;
 
@@ -93,7 +97,7 @@ public class Player : MonoBehaviour
         if (spotLight != null)
             spotLight.pointLightOuterRadius = maskOnRadius;
 
-        // Intro: Wipe + animación de luz (abre y vuelve a cerrar)
+        // Intro: Wipe + animación de luz (abre, espera 1s y vuelve a cerrar)
         StartCoroutine(IntroSequence());
     }
 
@@ -112,7 +116,11 @@ public class Player : MonoBehaviour
         // 2) "Como si te quitaras la máscara": abre la luz
         yield return AnimateLightTo(maskOffRadius, changeMaskAnimationDuration);
 
-        // 3) Vuelve a estado normal con máscara puesta
+        // 3) Delay dramático antes de volver a máscara puesta
+        if (delayBeforeMaskBack > 0f)
+            yield return new WaitForSeconds(delayBeforeMaskBack);
+
+        // 4) Vuelve a estado normal con máscara puesta
         isMaskOn = true;
         yield return AnimateLightTo(maskOnRadius, changeMaskAnimationDuration);
 
