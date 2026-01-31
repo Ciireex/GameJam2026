@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnTimeIsUp;
 
     [Header("References (auto)")]
-    [SerializeField] private Player player; // opcional: se auto-rellena si está vacío
+    [SerializeField] private Player player; // opcional: se auto-rellena si estï¿½ vacï¿½o
     public Player Player => player;
 
     // No guardes referencia serializada: usa el singleton real
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         // Nos enteramos cuando cambian escenas para pillar el nuevo Player
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
 
     private void Start()
     {
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     private void FindAndBindPlayer()
     {
-        // Desuscribe del anterior, si lo había
+        // Desuscribe del anterior, si lo habï¿½a
         UnbindPlayer();
 
         // Busca el Player de la escena actual (asumiendo 1 por escena)
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[GameManager] No se encontró Player en la escena actual.");
+            Debug.LogWarning("[GameManager] No se encontrï¿½ Player en la escena actual.");
         }
     }
 

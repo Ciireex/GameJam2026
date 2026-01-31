@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
 
     // NEW: Spawn point arrastrable + respawn delay
     [Header("Spawn / Respawn")]
-    [Tooltip("Arrastra aquí el punto donde debe reaparecer el jugador.")]
+    [Tooltip("Arrastra aquï¿½ el punto donde debe reaparecer el jugador.")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float respawnDelay = 1f;
 
@@ -19,20 +20,18 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallDuration = 0.6f;
     [SerializeField] private float fallEndScale = 0.05f;
 
+    [Header("Lighting")]
+    [SerializeField] private Light2D spotLight;
+    [Range(0,30)][SerializeField] private float maskOnRadius = 1f;
+    [Range(0,30)][SerializeField] private float maskOffRadius = 15f;
+    [SerializeField] private float changeMaskAnimationDuration = 0.5f;
+
+    [Header("PlayerVisual")]
     // NEW: Solo se encoge el visual
     [SerializeField] private Transform playerVisual;
 
     private bool isFalling;
     private Vector3 originalVisualScale;
-
-    [Header("Mask / Shadow")]
-    [SerializeField] private Renderer shadowRenderer;
-    [SerializeField] private float darknessLerpSpeed = 5f;
-    private Material shadowMaterial;
-    private const string DARKNESS_PARAM = "_DarknessStrength";
-    private float currentDarkness;
-    [SerializeField] private float maskOnDarkness = 250f;
-    [SerializeField] private float maskOffDarkness = 5f;
 
     private bool isDead;
 
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // NEW: si no está asignado, intenta encontrarlo por nombre
+        // NEW: si no estï¿½ asignado, intenta encontrarlo por nombre
         if (playerVisual == null)
         {
             Transform t = transform.Find("PlayerVisual");
@@ -64,20 +63,18 @@ public class Player : MonoBehaviour
         if (playerVisual != null)
             originalVisualScale = playerVisual.localScale;
 
-        currentDarkness = maskOnDarkness;
         currentHealthTime = maxHealthTime;
 
         healthSlider.SetMaxValue(maxHealthTime);
         healthSlider.SetValue(currentHealthTime);
 
-        GameInput.Instance.OnChangeMaskAction += GameInput_OnChangeMaskAction;
+        // Set light radius to whatever mask state we have
+        UpdateLightRadius();
 
+        GameInput.Instance.OnChangeMaskAction += GameInput_OnChangeMaskAction;
         GameManager.Instance.OnTimeIsUp += GameManager_OnTimeIsUp;
 
-        shadowMaterial = shadowRenderer.material;
-        shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
-
-        // NEW: si no has arrastrado spawnPoint, por defecto usa la posición inicial del player
+        // NEW: si no has arrastrado spawnPoint, por defecto usa la posiciï¿½n inicial del player
         if (spawnPoint == null)
         {
             GameObject sp = new GameObject("SpawnPoint_Runtime");
@@ -99,7 +96,6 @@ public class Player : MonoBehaviour
         }
 
         HandleHealthCountdown();
-        UpdateShadowDarkness();
     }
 
     private void FixedUpdate()
@@ -136,6 +132,7 @@ public class Player : MonoBehaviour
     {
         ToggleMask();
         ToggleCountdown();
+        UpdateLightRadius();
         Debug.Log("Mask is " + IsMaskOn());
     }
 
@@ -154,17 +151,23 @@ public class Player : MonoBehaviour
         countdownActive = !countdownActive;
     }
 
-    private void UpdateShadowDarkness()
+    private void UpdateLightRadius()
     {
-        float targetValue = isMaskOn ? maskOnDarkness : maskOffDarkness;
+        float targetOuterRadius = IsMaskOn() ? maskOnRadius : maskOffRadius;
+        StartCoroutine(ChangeLightRadiusCoroutine(targetOuterRadius, changeMaskAnimationDuration));
+    }
 
-        currentDarkness = Mathf.Lerp(
-            currentDarkness,
-            targetValue,
-            Time.deltaTime * darknessLerpSpeed
-        );
-
-        shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
+    private IEnumerator ChangeLightRadiusCoroutine(float targetOuterRadius, float duration)
+    {
+        float elapsedTime = 0f;
+        float startRadius = spotLight.pointLightOuterRadius;
+        while (elapsedTime < duration)
+        {
+            spotLight.pointLightOuterRadius = Mathf.Lerp(startRadius, targetOuterRadius, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        spotLight.pointLightOuterRadius = targetOuterRadius;
     }
 
     public void SetHealthDrainSpeedMultiplier(float value)
@@ -192,7 +195,7 @@ public class Player : MonoBehaviour
 
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
 
-        // NEW: respawn desde aquí
+        // NEW: respawn desde aquï¿½
         if (!isRespawning)
             StartCoroutine(RespawnRoutine());
     }
@@ -216,7 +219,7 @@ public class Player : MonoBehaviour
         Vector3 startScale = visual.localScale;
         Vector3 endScale;
 
-        // Si tenemos escala original guardada del visual, úsala; si no, usa la actual
+        // Si tenemos escala original guardada del visual, ï¿½sala; si no, usa la actual
         if (playerVisual != null)
             endScale = originalVisualScale * fallEndScale;
         else
@@ -259,21 +262,17 @@ public class Player : MonoBehaviour
         healthSlider.SetMaxValue(maxHealthTime);
         healthSlider.SetValue(currentHealthTime);
 
-        // Reset visual (por si murió encogido)
+        // Reset visual (por si muriï¿½ encogido)
         if (playerVisual != null)
         {
             playerVisual.localScale = originalVisualScale;
         }
 
-        // FORZAR MÁSCARA ON AL RESPAWNEAR
+        // FORZAR Mï¿½SCARA ON AL RESPAWNEAR
         isMaskOn = true;
 
-        // (Opcional) ¿Quieres que el contador se reinicie apagado?
+        // (Opcional) ï¿½Quieres que el contador se reinicie apagado?
         countdownActive = false;
-
-        // Reset sombras a "modo máscara"
-        currentDarkness = maskOnDarkness;
-        shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
 
         // Volver a estado vivo
         isDead = false;
