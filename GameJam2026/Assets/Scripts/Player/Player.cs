@@ -348,7 +348,7 @@ public class Player : MonoBehaviour
 
         if (SceneController.Instance != null)
         {
-            SceneController.Instance.TransitionAndLoadScene(sceneIndex);
+            SceneController.Instance.TransitionAndLoadScene(sceneIndex, false, false);
         }
         else
         {

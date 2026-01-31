@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
             Instance = null;
     }
 
-    public void TransitionAndLoadScene(int sceneIndex)
+    public void TransitionAndLoadScene(int sceneIndex, bool doFadeIn, bool doFadeout)
     {
         // Si alguien intenta usarlo mientras se est� destruyendo o duplicando, lo evitamos.
         if (this == null) return;
@@ -46,22 +46,22 @@ public class SceneController : MonoBehaviour
         if (isTransitioning)
             return;
 
-        StartCoroutine(DoSceneTransition(sceneIndex));
+        StartCoroutine(DoSceneTransition(sceneIndex, doFadeIn, doFadeout));
     }
 
-    private IEnumerator DoSceneTransition(int sceneIndex)
+    private IEnumerator DoSceneTransition(int sceneIndex, bool doFadeIn, bool doFadeOut)
     {
         isTransitioning = true;
 
         OnSceneTransitionStart?.Invoke();
 
         // Si el objeto gr�fico no existe, cargamos directo para no romper.
-        if (transitionGraphics != null)
+        if (transitionGraphics != null && doFadeIn)
             yield return StartCoroutine(TransitionEnterAnimation());
 
         SceneManager.LoadScene(sceneIndex);
 
-        if (transitionGraphics != null)
+        if (transitionGraphics != null && doFadeOut)
             yield return StartCoroutine(TransitionExitAnimation());
 
         OnSceneTransitionComplete?.Invoke();

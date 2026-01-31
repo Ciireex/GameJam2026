@@ -14,7 +14,7 @@ public class MainMenuController : MonoBehaviour
 
     public void NewGame()
     {
-        SceneController.Instance.TransitionAndLoadScene(gameSceneIndex);
+        SceneController.Instance.TransitionAndLoadScene(gameSceneIndex, true, true);
     }
 
     public void OpenOptions()

@@ -13,7 +13,7 @@ public class Reactor : MonoBehaviour
     {
         if (InputSystem.actions.FindAction("Player/Interact").WasPressedThisDynamicUpdate() && isPlayerColliding)
         {
-            GameManager.Instance.SceneController.TransitionAndLoadScene(sceneIndexToLoad);
+            GameManager.Instance.SceneController.TransitionAndLoadScene(sceneIndexToLoad, true, true);
         }
     }
 
