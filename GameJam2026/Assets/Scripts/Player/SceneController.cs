@@ -97,7 +97,7 @@ public class SceneController : MonoBehaviour
             if (transitionGraphics == null) yield break;
 
             transitionGraphics.transform.localPosition =
-                new Vector3(Mathf.Lerp(0f, -startPosition, elapsedTime / (transitionAnimationTime * 2)), 0, 0);
+                new Vector3(Mathf.Lerp(0f, -startPosition, elapsedTime / (transitionAnimationTime)), 0, 0);
 
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
