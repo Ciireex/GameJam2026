@@ -523,17 +523,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9c3a5f070a8f4348b3aeca40977a970, type: 3}
---- !u!114 &510493763 stripped
+--- !u!114 &510493760 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5682737711367900544, guid: 33f8a76e497a75e4898707551814f862, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6718159041066317616, guid: 33f8a76e497a75e4898707551814f862, type: 3}
   m_PrefabInstance: {fileID: 1026939633}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bbd286aa73e4264c8891d75e50eb022, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_EditorClassIdentifier: Assembly-CSharp::WipeController
 --- !u!1 &523601821
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 523601825}
   - component: {fileID: 523601824}
   - component: {fileID: 523601823}
-  - component: {fileID: 523601826}
   m_Layer: 0
   m_Name: Tilemap_Disappear
   m_TagString: FallingTilemap
@@ -725,18 +724,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &523601826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523601821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205bb373e5d77d64cbf4a4d326d95b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisappearingTilemap
 --- !u!1001 &681933494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 8551745672918425486, guid: 1af4ddcaa0df3af4baeb4f8a998ba51a, type: 3}
       propertyPath: wipeEffect
       value: 
-      objectReference: {fileID: 510493763}
+      objectReference: {fileID: 510493760}
     - target: {fileID: 8984496013435861334, guid: 1af4ddcaa0df3af4baeb4f8a998ba51a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.126188
