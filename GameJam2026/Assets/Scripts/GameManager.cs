@@ -20,4 +20,19 @@ public class GameManager : MonoBehaviour
             return;
         }
     }
+
+    private void Start()
+    {
+        player.OnPlayerDeath += Player_OnPlayerDeath;
+    }
+
+    private void Player_OnPlayerDeath(object sender, System.EventArgs e)
+    {
+        GameOver();
+    }
+
+    private void GameOver() 
+    {
+        Time.timeScale = 0f;
+    }
 }
