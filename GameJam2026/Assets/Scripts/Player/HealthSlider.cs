@@ -54,6 +54,9 @@ public class HealthSlider : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private Material fillMaterial;
+    [SerializeField] private Image healthStateIcon;
+    [SerializeField] private Sprite safeSprite;
+    [SerializeField] private Sprite dyingSprite;
 
     public void SetMaxValue(float max)
     {
@@ -72,6 +75,11 @@ public class HealthSlider : MonoBehaviour
     public void SetShaderShake(float value)
     {
         fillMaterial.SetFloat("_shakeStrength", value);
+    }
+
+    public void ChangeHealthStateIcon()
+    {
+        healthStateIcon.sprite = GameManager.Instance.Player.IsMaskOn() ? safeSprite : dyingSprite;
     }
 }
 

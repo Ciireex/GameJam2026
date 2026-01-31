@@ -193,6 +193,9 @@ public class Player : MonoBehaviour
         else
             healthSlider.SetShaderShake(1f);
 
+        if (healthSlider)
+            healthSlider.ChangeHealthStateIcon();
+
         Debug.Log("Mask is " + IsMaskOn());
     }
 
