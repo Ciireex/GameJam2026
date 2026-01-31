@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
 
     [Header("Lighting")]
     [SerializeField] private Light2D spotLight;
-    [Range(0,30)][SerializeField] private float maskOnRadius = 1f;
-    [Range(0,30)][SerializeField] private float maskOffRadius = 15f;
+    [Range(0, 30)][SerializeField] private float maskOnRadius = 1f;
+    [Range(0, 30)][SerializeField] private float maskOffRadius = 15f;
     [SerializeField] private float changeMaskAnimationDuration = 0.5f;
 
     [Header("PlayerVisual")]
@@ -132,7 +132,15 @@ public class Player : MonoBehaviour
     {
         ToggleMask();
         ToggleCountdown();
+
+        // Light
         UpdateLightRadius();
+
+        // Health Slide Shader
+        if (IsMaskOn())
+            healthSlider.SetShaderShake(0.1f);
+        else
+            healthSlider.SetShaderShake(1f);
         Debug.Log("Mask is " + IsMaskOn());
     }
 
@@ -181,8 +189,8 @@ public class Player : MonoBehaviour
         {
             FallAndDie();
         }
-        if(other.CompareTag("Spikes"))
-        { 
+        if (other.CompareTag("Spikes"))
+        {
             Kill();
         }
     }
