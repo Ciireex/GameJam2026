@@ -60,8 +60,8 @@ MonoBehaviour:
   playerVisual: {fileID: 4999298684043461031}
   shadowRenderer: {fileID: 8800333231083551320}
   darknessLerpSpeed: 5
-  maskOnDarkness: 100
-  maskOffDarkness: 5
+  maskOnDarkness: 250
+  maskOffDarkness: 20
 --- !u!61 &4138016262120776426
 BoxCollider2D:
   m_ObjectHideFlags: 0
