@@ -652,7 +652,6 @@ GameObject:
   - component: {fileID: 523601825}
   - component: {fileID: 523601824}
   - component: {fileID: 523601823}
-  - component: {fileID: 523601826}
   m_Layer: 0
   m_Name: Tilemap_Disappear
   m_TagString: FallingTilemap
@@ -831,18 +830,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &523601826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523601821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205bb373e5d77d64cbf4a4d326d95b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisappearingTilemap
 --- !u!1001 &681933494
 PrefabInstance:
   m_ObjectHideFlags: 0
