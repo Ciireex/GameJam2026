@@ -53,16 +53,25 @@ using UnityEngine.UI;
 public class HealthSlider : MonoBehaviour
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private Material fillMaterial;
 
     public void SetMaxValue(float max)
     {
         slider.maxValue = max;
         slider.value = max;
+        fillMaterial.SetFloat("_maxValue", max);
     }
 
     public void SetValue(float value)
     {
         slider.value = value;
+        fillMaterial.SetFloat("_value", value);
+    }
+
+
+    public void SetShaderShake(float value)
+    {
+        fillMaterial.SetFloat("_shakeStrength", value);
     }
 }
 
