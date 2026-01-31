@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6565058770998292399
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bounce 20-Collision [2026-01-31 134554]-2_bip_{-6565058770998292399}
+  m_AudioClip: {fileID: 8300000, guid: 686f68fd220d44943a0745644d24d08a, type: 3}
+  m_Volume: 0
+  m_Enabled: 0
+--- !u!1233149941 &-6401696946312878197
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: step1_{-6401696946312878197}
+  m_AudioClip: {fileID: 8300000, guid: 520e581c64f934a1eb1d59426963c62b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5587439459929079310
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bounce 20-Collision [2026-01-31 134554]-2_bip_2_{-5587439459929079310}
+  m_AudioClip: {fileID: 8300000, guid: d70af230d921242edb7b66a2c60f104b, type: 3}
+  m_Volume: 0
+  m_Enabled: 0
+--- !u!1233149941 &262794282145236262
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: step3_{262794282145236262}
+  m_AudioClip: {fileID: 8300000, guid: fe77760503b194cafba53f6eb7686442, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2689148713545217227
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: step2_{2689148713545217227}
+  m_AudioClip: {fileID: 8300000, guid: 7a44b5c10e9644bbe8cd39522cee9bf7, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4705607570907317031
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bounce 20-Collision [2026-01-31 134554]-2_bip_3_{4705607570907317031}
+  m_AudioClip: {fileID: 8300000, guid: 3b95f5d5540a94642a346a6676ac09ed, type: 3}
+  m_Volume: 0
+  m_Enabled: 0
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: footsteps_container
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -7.7714233, y: 0}
+  m_PitchRandomizationRange: {x: -209.52388, y: 65.26974}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -6565058770998292399}
+  - {fileID: 6816377978200341167}
+  - {fileID: -5587439459929079310}
+  - {fileID: 4705607570907317031}
+  - {fileID: -6401696946312878197}
+  - {fileID: 2689148713545217227}
+  - {fileID: 262794282145236262}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &6816377978200341167
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bounce 20-Collision [2026-01-31 134554]-2_bip_1_{6816377978200341167}
+  m_AudioClip: {fileID: 8300000, guid: e36fcb4e4e47c4dce9357cf37ec52c1a, type: 3}
+  m_Volume: 0
+  m_Enabled: 0
