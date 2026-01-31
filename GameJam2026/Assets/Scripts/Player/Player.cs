@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthSlider healthSlider;
     [SerializeField] private float healthDrainSpeedMultiplier = 1f;
 
+    // NEW: Spawn point arrastrable + respawn delay
+    [Header("Spawn / Respawn")]
+    [Tooltip("Arrastra aquí el punto donde debe reaparecer el jugador.")]
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float respawnDelay = 1f;
+
     [Header("Fall")]
     [SerializeField] private float fallDuration = 0.6f;
     [SerializeField] private float fallEndScale = 0.05f;
@@ -25,8 +31,8 @@ public class Player : MonoBehaviour
     private Material shadowMaterial;
     private const string DARKNESS_PARAM = "_DarknessStrength";
     private float currentDarkness;
-    [SerializeField]  private float maskOnDarkness = 100f;
-    [SerializeField]  private float maskOffDarkness = 5f;
+    [SerializeField] private float maskOnDarkness = 100f;
+    [SerializeField] private float maskOffDarkness = 5f;
 
     private bool isDead;
 
@@ -39,6 +45,9 @@ public class Player : MonoBehaviour
     // Movement (Rigidbody2D)
     private Rigidbody2D rb;
     private Vector2 moveInput;
+
+    // NEW: para no lanzar respawn dos veces
+    private bool isRespawning;
 
     private void Start()
     {
@@ -65,6 +74,15 @@ public class Player : MonoBehaviour
 
         shadowMaterial = shadowRenderer.material;
         shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
+
+        // NEW: si no has arrastrado spawnPoint, por defecto usa la posición inicial del player
+        if (spawnPoint == null)
+        {
+            GameObject sp = new GameObject("SpawnPoint_Runtime");
+            sp.transform.position = transform.position;
+            sp.transform.rotation = transform.rotation;
+            spawnPoint = sp.transform;
+        }
     }
 
     private void Update()
@@ -164,6 +182,10 @@ public class Player : MonoBehaviour
 
         Debug.Log("Player has died");
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+
+        // NEW: respawn desde aquí
+        if (!isRespawning)
+            StartCoroutine(RespawnRoutine());
     }
 
     public void FallAndDie()
@@ -204,4 +226,55 @@ public class Player : MonoBehaviour
         isFalling = false;
         Kill();
     }
+
+    private IEnumerator RespawnRoutine()
+    {
+        isRespawning = true;
+
+        // Desactivar movimiento/colisiones durante el respawn
+        if (rb != null) rb.simulated = false;
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        yield return new WaitForSeconds(respawnDelay);
+
+        // Teleport al punto de spawn
+        if (spawnPoint != null)
+        {
+            transform.position = spawnPoint.position;
+            if (rb != null) rb.position = spawnPoint.position;
+        }
+
+        // Reset vida + UI
+        currentHealthTime = maxHealthTime;
+        healthSlider.SetMaxValue(maxHealthTime);
+        healthSlider.SetValue(currentHealthTime);
+
+        // Reset visual (por si murió encogido)
+        if (playerVisual != null)
+        {
+            playerVisual.localScale = originalVisualScale;
+        }
+
+        // FORZAR MÁSCARA ON AL RESPAWNEAR
+        isMaskOn = true;
+
+        // (Opcional) ¿Quieres que el contador se reinicie apagado?
+        countdownActive = false;
+
+        // Reset sombras a "modo máscara"
+        currentDarkness = maskOnDarkness;
+        shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
+
+        // Volver a estado vivo
+        isDead = false;
+        isFalling = false;
+
+        // Reactivar movimiento/colisiones
+        if (rb != null) rb.simulated = true;
+        if (col != null) col.enabled = true;
+
+        isRespawning = false;
+    }
+
 }
