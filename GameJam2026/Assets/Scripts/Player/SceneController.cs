@@ -37,7 +37,7 @@ public class SceneController : MonoBehaviour
 
     public void TransitionAndLoadScene(int sceneIndex)
     {
-        // Si alguien intenta usarlo mientras se está destruyendo o duplicando, lo evitamos.
+        // Si alguien intenta usarlo mientras se estï¿½ destruyendo o duplicando, lo evitamos.
         if (this == null) return;
 
         if (!gameObject.activeInHierarchy)
@@ -55,7 +55,7 @@ public class SceneController : MonoBehaviour
 
         OnSceneTransitionStart?.Invoke();
 
-        // Si el objeto gráfico no existe, cargamos directo para no romper.
+        // Si el objeto grï¿½fico no existe, cargamos directo para no romper.
         if (transitionGraphics != null)
             yield return StartCoroutine(TransitionEnterAnimation());
 
