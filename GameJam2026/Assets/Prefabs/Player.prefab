@@ -145,6 +145,7 @@ MonoBehaviour:
   spotLight: {fileID: 7209442418071873372}
   maskOnRadius: 1
   maskOffRadius: 15
+  changeMaskAnimationDuration: 0.5
   playerVisual: {fileID: 4999298684043461031}
 --- !u!61 &4138016262120776426
 BoxCollider2D:
@@ -537,11 +538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -534
+      value: -1250
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -573,11 +574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 233
+      value: 575
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 1074862046369642388, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -594,6 +595,22 @@ PrefabInstance:
     - target: {fileID: 2667086469932902189, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_Name
       value: Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511928323053752376, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511928323053752376, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394541820700880732, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394541820700880732, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7467430992021802352, guid: 39c6e3135014d6e489abb7f5d69e813b, type: 3}
       propertyPath: m_AnchorMax.x
