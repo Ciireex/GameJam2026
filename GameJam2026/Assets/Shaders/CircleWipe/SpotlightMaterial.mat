@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Background: 0
-    - _CircleSize: 0.31699082
+    - _CircleSize: 1
     - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
