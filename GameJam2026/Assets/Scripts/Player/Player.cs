@@ -72,6 +72,8 @@ public class Player : MonoBehaviour
 
         GameInput.Instance.OnChangeMaskAction += GameInput_OnChangeMaskAction;
 
+        GameManager.Instance.OnTimeIsUp += GameManager_OnTimeIsUp;
+
         shadowMaterial = shadowRenderer.material;
         shadowMaterial.SetFloat(DARKNESS_PARAM, currentDarkness);
 
@@ -122,6 +124,12 @@ public class Player : MonoBehaviour
             currentHealthTime = 0f;
             Kill();
         }
+    }
+
+    private void GameManager_OnTimeIsUp(object sender, EventArgs e)
+    {
+        Debug.Log("uaaaaaa");
+        Kill();
     }
 
     private void GameInput_OnChangeMaskAction(object sender, EventArgs e)
@@ -181,6 +189,7 @@ public class Player : MonoBehaviour
         countdownActive = false;
 
         Debug.Log("Player has died");
+
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
 
         // NEW: respawn desde aquí
@@ -275,6 +284,8 @@ public class Player : MonoBehaviour
         if (col != null) col.enabled = true;
 
         isRespawning = false;
+
+        GameManager.Instance.StartTimer();
     }
 
     public void SetDrainMultiplier(float multiplier)

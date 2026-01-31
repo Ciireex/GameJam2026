@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         return Mathf.Clamp01(timeLeft / levelTime);
     }
 
-    private void StartTimer()
+    public void StartTimer()
     {
         timeLeft = levelTime;
         timerRunning = true;
