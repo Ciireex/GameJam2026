@@ -11,7 +11,7 @@ public class WipeController : MonoBehaviour
 
     private bool isIn;
 
-    private void Start()
+    private void Awake()
     {
         _animatior = gameObject.GetComponent<Animator>();
         _image = gameObject.GetComponent<Image>();

@@ -104,7 +104,6 @@ public class Player : MonoBehaviour
     private IEnumerator IntroSequence()
     {
         introPlaying = true;
-
         // 1) Wipe in
         if (wipeEffect != null)
             wipeEffect.AnimateIn();
