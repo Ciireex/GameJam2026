@@ -181,6 +181,10 @@ public class Player : MonoBehaviour
         {
             FallAndDie();
         }
+        if(other.CompareTag("Spikes"))
+        { 
+            Kill();
+        }
     }
 
     public void Kill()
