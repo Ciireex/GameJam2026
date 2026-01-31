@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
 
         // Asegura luz en estado normal ANTES de la intro (para evitar saltos raros)
         if (spotLight != null)
-            spotLight.pointLightOuterRadius = maskOnRadius;
+            spotLight.pointLightOuterRadius = maskOffRadius;
 
         // Intro: Wipe + animación de luz (abre, espera 1s y vuelve a cerrar)
         StartCoroutine(IntroSequence());
