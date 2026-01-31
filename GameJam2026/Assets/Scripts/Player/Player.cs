@@ -111,8 +111,10 @@ public class Player : MonoBehaviour
         introPlaying = true;
 
         // 1) Wipe in
-        if (wipeEffect != null)
+        if (wipeEffect != null) { 
             wipeEffect.AnimateIn();
+            Debug.Log("Wipe in started");
+        }
 
         if (wipeInDuration > 0f)
             yield return new WaitForSeconds(wipeInDuration);

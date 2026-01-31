@@ -90,9 +90,6 @@ public class SceneController : MonoBehaviour
             elapsedTime += Time.unscaledDeltaTime; // recomendable si pausas con timeScale
             yield return null;
         }
-
-        if (transitionGraphics != null)
-            transitionGraphics.transform.localPosition = Vector3.zero;
     }
 
     private IEnumerator TransitionEnterAnimation()
