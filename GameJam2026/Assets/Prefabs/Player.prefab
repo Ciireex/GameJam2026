@@ -482,8 +482,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6181, y: 1.6181, z: 1.6181}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.9999999, y: 1.9999999, z: 1.9999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5168473803322085755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -618,8 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458acdec0713e844fb1ad849543a4aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveSpeed: 7
-  maxHealthTime: 15
+  moveSpeed: 5
+  maxHealthTime: 20
   healthSlider: {fileID: 4164950550152171971}
   healthDrainSpeedMultiplier: 1
   spawnPoint: {fileID: 0}
