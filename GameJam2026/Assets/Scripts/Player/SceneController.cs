@@ -59,7 +59,18 @@ public class SceneController : MonoBehaviour
         if (transitionGraphics != null && doFadeIn)
             yield return StartCoroutine(TransitionEnterAnimation());
 
-        SceneManager.LoadScene(sceneIndex);
+        if (transitionGraphics != null && !doFadeIn)
+        {
+            yield return StartCoroutine(FakeAnimation());
+        }
+
+            SceneManager.LoadScene(sceneIndex);
+
+        if (transitionGraphics != null && !doFadeOut)
+        {
+            yield return StartCoroutine(FakeAnimation());
+        }
+
 
         if (transitionGraphics != null && doFadeOut)
             yield return StartCoroutine(TransitionExitAnimation());
@@ -67,6 +78,21 @@ public class SceneController : MonoBehaviour
         OnSceneTransitionComplete?.Invoke();
 
         isTransitioning = false;
+    }
+
+    private IEnumerator FakeAnimation()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < transitionAnimationTime)
+        {
+            if (transitionGraphics == null) yield break;
+            elapsedTime += Time.unscaledDeltaTime; // recomendable si pausas con timeScale
+            yield return null;
+        }
+
+        if (transitionGraphics != null)
+            transitionGraphics.transform.localPosition = Vector3.zero;
     }
 
     private IEnumerator TransitionEnterAnimation()
