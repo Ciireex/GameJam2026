@@ -9260,63 +9260,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c521be19f370c4283b1d9020173beb12, type: 3}
---- !u!1001 &1409432649
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2324897322207313521, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746885677604468140, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
-      propertyPath: m_Name
-      value: AcidSplash
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d5445c68a210c460bae22fe049f62fc2, type: 3}
 --- !u!114 &1424651581 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7009181193502364915, guid: 938e78caec60deb4ebf29330b652726a, type: 3}
@@ -9759,5 +9702,4 @@ SceneRoots:
   - {fileID: 113380514}
   - {fileID: 916253362}
   - {fileID: 1828257166}
-  - {fileID: 1409432649}
   - {fileID: 710794367}
