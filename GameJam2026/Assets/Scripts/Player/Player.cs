@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
     private Material shadowMaterial;
     private const string DARKNESS_PARAM = "_DarknessStrength";
     private float currentDarkness;
-    private float maskOnDarkness = 100f;    
-    private float maskOffDarkness = 5f;
+    [SerializeField]  private float maskOnDarkness = 100f;
+    [SerializeField]  private float maskOffDarkness = 5f;
 
     private bool isDead;
 
