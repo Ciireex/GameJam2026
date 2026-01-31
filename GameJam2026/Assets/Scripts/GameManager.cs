@@ -5,6 +5,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public event EventHandler OnTimeIsUp;
 
     [Header("References (auto)")]
     [SerializeField] private Player player; // opcional: se auto-rellena si está vacío
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     // No guardes referencia serializada: usa el singleton real
     public SceneController SceneController => SceneController.Instance;
+
+    [Header("Level Timer")]
+    [SerializeField] private float levelTime = 120f;
+    private float timeLeft;
+    private bool timerRunning;
 
     private void Awake()
     {
@@ -32,6 +38,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         FindAndBindPlayer();
+    }
+    private void Update()
+    {
+        if (!timerRunning) return;
+
+        timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= 0f)
+        {
+            timeLeft = 0f;
+            timerRunning = false;
+            OnTimeOut();
+        }
     }
 
     private void OnDestroy()
@@ -64,7 +83,10 @@ public class GameManager : MonoBehaviour
             if (settings != null)
             {
                 player.SetDrainMultiplier(settings.drainMultiplier);
+                levelTime = settings.levelTime;
             }
+
+            StartTimer();
         }
         else
         {
@@ -89,4 +111,25 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
     }
+
+    public float GetTimeLeftNomralized()
+    {
+        if (!timerRunning || levelTime <= 0f)
+            return 0f;
+        return Mathf.Clamp01(timeLeft / levelTime);
+    }
+
+    private void StartTimer()
+    {
+        timeLeft = levelTime;
+        timerRunning = true;
+    }
+
+    private void OnTimeOut()
+    {
+        Debug.Log("Time's up!");
+        OnTimeIsUp?.Invoke(this, EventArgs.Empty);
+    }
+
+
 }
