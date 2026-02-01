@@ -50,6 +50,7 @@ MonoBehaviour:
   spikeLifetime: 5
   spikes:
   - {fileID: 8280081818858457715}
+  sfxPrefab: {fileID: 840503546917518164, guid: 87cd6451ae2d045718029cf6479bdc62, type: 3}
 --- !u!1 &2733811538265185475
 GameObject:
   m_ObjectHideFlags: 0
