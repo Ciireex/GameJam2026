@@ -155,6 +155,7 @@ public class ShutDownReactor : MonoBehaviour
         yield return new WaitForSeconds(2f); // <-- wait  a second (adjust as needed)
         
         l.SetActive(true);
+        AudioManager.Instance.PlaySFX("high_pitch");
 
         yield return new WaitForSeconds(2f); // <-- wait  a second (adjust as needed)
 
