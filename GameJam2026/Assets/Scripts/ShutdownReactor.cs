@@ -36,6 +36,7 @@ public class ShutDownReactor : MonoBehaviour
     [SerializeField] private CinemachineCamera vCam;
     [SerializeField] private float zoomDuration = 1f;  // how long the zoom takes
     [SerializeField] private float zoomFOV = .8f;        // target FOV for zoom
+    [SerializeField] private GameObject l;        // light to show during zoom
     private float originalFOV;
 
 
@@ -142,10 +143,14 @@ public class ShutDownReactor : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1f); // <-- wait  a second (adjust as needed)
-
         // Zoom a jugador
         yield return StartCoroutine(ZoomToPlayer());
+
+        yield return new WaitForSeconds(2f); // <-- wait  a second (adjust as needed)
+        
+        l.SetActive(true);
+
+        yield return new WaitForSeconds(2f); // <-- wait  a second (adjust as needed)
 
         // Ir al Main Menu
         if (SceneController.Instance != null && useTransition)
