@@ -20,6 +20,26 @@ AudioContainerElement:
   m_AudioClip: {fileID: 8300000, guid: 77396a27204ad412c8b5dcd16cbb9ba6, type: 3}
   m_Volume: 0
   m_Enabled: 1
+--- !u!1233149941 &-5649654373831258047
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_11_{-5649654373831258047}
+  m_AudioClip: {fileID: 8300000, guid: c6267e5fd282a4485a370b047187ebc5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3236416650375146516
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_8_{-3236416650375146516}
+  m_AudioClip: {fileID: 8300000, guid: 3f23dbf940a2d4f148f31b05974b1f20, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
 --- !u!1233149941 &-2633954778922001199
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -38,6 +58,26 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: electro_1_{-426408682183301587}
   m_AudioClip: {fileID: 8300000, guid: 1bdfb241037cb4c43b02040fa885291e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-60802503541351719
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_5_{-60802503541351719}
+  m_AudioClip: {fileID: 8300000, guid: 295a4e42a7f874855bb669170af57b1d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1108413244988462417
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_7_{1108413244988462417}
+  m_AudioClip: {fileID: 8300000, guid: a1f80a6a06ddc4154a1356efd322dcb8, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &2247532586302568799
@@ -69,21 +109,26 @@ AudioRandomContainer:
   m_Name: main_menu_container
   m_Volume: 0
   m_Pitch: 0
-  m_AutomaticTriggerTime: 1.6
+  m_AutomaticTriggerTime: 2.4
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: -10.864201, y: 0}
   m_PitchRandomizationRange: {x: -192.59256, y: 148.1482}
-  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 2.9629683}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 5}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
   - {fileID: -426408682183301587}
   - {fileID: 4766204192327817867}
+  - {fileID: 7674874708653770343}
   - {fileID: 2247532586302568799}
+  - {fileID: -60802503541351719}
   - {fileID: -7072864764973468541}
+  - {fileID: 1108413244988462417}
+  - {fileID: -3236416650375146516}
   - {fileID: -2633954778922001199}
   - {fileID: -6181205497491001287}
-  m_AvoidRepeatingLast: 0
-  m_PlaybackMode: 1
+  - {fileID: -5649654373831258047}
+  m_AvoidRepeatingLast: 5
+  m_PlaybackMode: 2
   m_TriggerMode: 1
   m_AutomaticTriggerMode: 1
   m_LoopMode: 2
@@ -91,3 +136,13 @@ AudioRandomContainer:
   m_PitchRandomizationEnabled: 1
   m_AutomaticTriggerTimeRandomizationEnabled: 1
   m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7674874708653770343
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: electro_3_{7674874708653770343}
+  m_AudioClip: {fileID: 8300000, guid: 4fc33d65e38434607b36fee45aec3aab, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
