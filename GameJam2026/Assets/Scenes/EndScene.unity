@@ -4341,6 +4341,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8312964285407929058, guid: 1e756f84a1d2e0747a6a21a5ff004026, type: 3}
+      propertyPath: spikeInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312964285407929058, guid: 1e756f84a1d2e0747a6a21a5ff004026, type: 3}
+      propertyPath: spikeLifetime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312964285407929058, guid: 1e756f84a1d2e0747a6a21a5ff004026, type: 3}
       propertyPath: spikes.Array.size
       value: 1
       objectReference: {fileID: 0}
