@@ -15,7 +15,6 @@ public class TypewriterText : MonoBehaviour
 
     private TMP_Text textComponent;
 
-    private bool isTyping = false;
 
     private void Awake()
     {
@@ -29,7 +28,6 @@ public class TypewriterText : MonoBehaviour
 
     private IEnumerator TypeText()
     {
-        isTyping = true;
         textComponent.text = "";
 
         foreach (char c in fullText)
@@ -50,7 +48,6 @@ public class TypewriterText : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
-        isTyping = false;
 
         ShowControls();
     }
