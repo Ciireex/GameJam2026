@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     [SerializeField] private AudioSource musicAudioSource;
+    public AudioSource MusicAudioSource => musicAudioSource;
     [SerializeField] private AudioMixer mixer;
     public AudioMixer AudioMixer => mixer;
     [SerializeField] private AudioClip[] tracks;
@@ -25,6 +26,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void ChangeMusicTrack(string clipName, string mixerGroupName, bool keepPlaybackPosition, bool fadeOut)
+    {
+        StartCoroutine(ChangeTrackCoroutine(musicAudioSource, clipName, mixerGroupName, keepPlaybackPosition, fadeOut));
+    }
+
     public IEnumerator FadeVolumeToValue(AudioSource source, float endValue, float time)
     {
         float elapsedTime = 0f;
@@ -38,7 +44,7 @@ public class AudioManager : MonoBehaviour
             source.volume = endValue;
     }
 
-    public IEnumerator ChangeTrack(AudioSource source, string clipName, string mixerGroupName, bool keepPlaybackPosition, bool fadeOut)
+    public IEnumerator ChangeTrackCoroutine(AudioSource source, string clipName, string mixerGroupName, bool keepPlaybackPosition, bool fadeOut)
     {
         float playbackPosition = 0f;
         foreach (AudioClip track in tracks)
@@ -54,9 +60,7 @@ public class AudioManager : MonoBehaviour
                 source.clip = track;
                 source.outputAudioMixerGroup = mixer.FindMatchingGroups(mixerGroupName).FirstOrDefault();
                 if (keepPlaybackPosition)
-                {
                     source.time = playbackPosition;
-                }
                 source.Play(); 
                 break;
             }
@@ -108,11 +112,11 @@ public class AudioManager : MonoBehaviour
         }
         if (sfxAudioSource.clip)
         {
-            Destroy(sfxGO, sfxAudioSource.clip.length);
+            Destroy(sfxAudioSource.gameObject, sfxAudioSource.clip.length);
         }
         else
         {
-            Destroy(sfxGO);
+            Destroy(sfxAudioSource.gameObject);
         }
     }
 }
