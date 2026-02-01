@@ -120,6 +120,13 @@ public class GameManager : MonoBehaviour
         return Mathf.Clamp01(timeLeft / levelTime);
     }
 
+    public float GetTimeLeft()
+    {
+        if (!timerRunning || levelTime <= 0f)
+            return 0f;
+        return timeLeft;
+    }
+
     public void StartTimer()
     {
         timeLeft = levelTime;

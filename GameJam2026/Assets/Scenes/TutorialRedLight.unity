@@ -861,6 +861,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2103604936}
     - target: {fileID: 7204811582563024438, guid: c521be19f370c4283b1d9020173beb12, type: 3}
+      propertyPath: levelTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204811582563024438, guid: c521be19f370c4283b1d9020173beb12, type: 3}
       propertyPath: sceneController
       value: 
       objectReference: {fileID: 334018891}
@@ -2810,7 +2814,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1500786301326078579, guid: 818ceff8e8a4a624ebf6019f99c6ebd6, type: 3}
       propertyPath: levelTime
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1500786301326078579, guid: 818ceff8e8a4a624ebf6019f99c6ebd6, type: 3}
       propertyPath: drainMultiplier
