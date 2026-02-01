@@ -37,9 +37,9 @@ RectTransform:
   m_Father: {fileID: 5902935801965757415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 575, y: -75}
-  m_SizeDelta: {x: -1250, y: 150}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 388.1, y: -130}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3964077710755835048
 MonoBehaviour:
@@ -119,8 +119,8 @@ MonoBehaviour:
   slider: {fileID: 3964077710755835048}
   fillMaterial: {fileID: -876546973899608171, guid: 98403706a39454b7d8ffc84175425b84, type: 3}
   healthStateIcon: {fileID: 1928516494065291019}
-  safeSprite: {fileID: -6272771503801108446, guid: 91bc45b1201d04222a42d0d79163d229, type: 3}
-  dyingSprite: {fileID: -2869334171946279388, guid: c7386d3979f924803982c34f6c21dc5a, type: 3}
+  safeSprite: {fileID: 3980140487562858156, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
+  dyingSprite: {fileID: -2906203513720773286, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
 --- !u!222 &5626078028042435886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -254,8 +254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -35.19995, y: 0}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3211135481566002156
 CanvasRenderer:
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6272771503801108446, guid: 91bc45b1201d04222a42d0d79163d229, type: 3}
+  m_Sprite: {fileID: 3980140487562858156, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
