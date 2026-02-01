@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.Cinemachine;
 
 public class ShutDownReactor : MonoBehaviour
 {
@@ -30,6 +31,13 @@ public class ShutDownReactor : MonoBehaviour
 
     [Tooltip("Usar transición del SceneController (si existe).")]
     [SerializeField] private bool useTransition = true;
+
+    //FinalAnimation
+    [SerializeField] private CinemachineCamera vCam;
+    [SerializeField] private float zoomDuration = 1f;  // how long the zoom takes
+    [SerializeField] private float zoomFOV = .8f;        // target FOV for zoom
+    private float originalFOV;
+
 
     private bool isPlayerColliding = false;
     private bool isShuttingDown = false;
@@ -131,6 +139,9 @@ public class ShutDownReactor : MonoBehaviour
             }
         }
 
+        // Zoom a jugador
+        yield return StartCoroutine(ZoomToPlayer());
+
         // Ir al Main Menu
         if (SceneController.Instance != null && useTransition)
         {
@@ -196,4 +207,32 @@ public class ShutDownReactor : MonoBehaviour
 
         GUI.Label(rect, autoPromptText, style);
     }
+    private IEnumerator ZoomToPlayer()
+    {
+        if (vCam == null)
+            yield break;
+
+        // Store original orthographic size
+        originalFOV = vCam.Lens.OrthographicSize;
+
+        float elapsed = 0f;
+
+        while (elapsed < zoomDuration)
+        {
+            float t = elapsed / zoomDuration;
+
+            // Smooth interpolation
+            vCam.Lens.OrthographicSize = Mathf.Lerp(originalFOV, zoomFOV, t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure final size
+        vCam.Lens.OrthographicSize = zoomFOV;
+    }
+
+
+
+
 }

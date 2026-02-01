@@ -1104,6 +1104,9 @@ MonoBehaviour:
   shutdownDuration: 5
   mainMenuSceneIndex: 0
   useTransition: 1
+  vCam: {fileID: 637554600}
+  zoomDuration: 1
+  zoomFOV: 1
 --- !u!1001 &222173590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2663,6 +2666,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5013565478980180843, guid: 42be293c6e4795e43ad1bf6c74adf684, type: 3}
   m_PrefabInstance: {fileID: 629748541}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &637554600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3269231070222346942, guid: 9596b3c25a7b9ed46ab0d2109091243d, type: 3}
+  m_PrefabInstance: {fileID: 271816707222511899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!1 &641577433
 GameObject:
   m_ObjectHideFlags: 0
@@ -33681,6 +33695,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3269231070222346942, guid: 9596b3c25a7b9ed46ab0d2109091243d, type: 3}
+      propertyPath: Lens.OrthographicSize
+      value: 4.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3269231070222346942, guid: 9596b3c25a7b9ed46ab0d2109091243d, type: 3}
       propertyPath: Target.TrackingTarget
       value: 

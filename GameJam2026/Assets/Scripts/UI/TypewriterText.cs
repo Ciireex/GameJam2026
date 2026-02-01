@@ -8,6 +8,7 @@ public class TypewriterText : MonoBehaviour
     [SerializeField] private GameObject controlBckg;
     [SerializeField] private GameObject controlsText;
     [SerializeField] private GameObject continueBtn;
+    [SerializeField] private GameObject doorsText;
 
     [SerializeField] private float fadeDuration = 1f;
 
@@ -65,6 +66,9 @@ public class TypewriterText : MonoBehaviour
 
         if (continueBtn != null)
             StartCoroutine(FadeIn(continueBtn));
+
+        if (continueBtn != null)
+            StartCoroutine(FadeIn(doorsText));
     }
 
 
