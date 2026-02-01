@@ -463,6 +463,7 @@ public class Player : MonoBehaviour
             return;
 
         StartCoroutine(FallRoutine());
+        AudioManager.Instance.PlaySFX("death_tile", 1f, UnityEngine.Random.Range(0.85f, 1f));
     }
 
     private IEnumerator FallRoutine()
