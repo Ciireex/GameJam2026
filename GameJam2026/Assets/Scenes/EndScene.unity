@@ -1011,6 +1011,7 @@ MonoBehaviour:
   zoomDuration: 3
   zoomFOV: 0.8
   l: {fileID: 2059933256}
+  explosionPrefab: {fileID: 8883068290773856689, guid: 3a634dcda03994c99b8556447fab6fbc, type: 3}
 --- !u!1001 &222173590
 PrefabInstance:
   m_ObjectHideFlags: 0
