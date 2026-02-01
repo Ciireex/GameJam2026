@@ -22,16 +22,21 @@ public class SpikesBridge : MonoBehaviour
 
     private IEnumerator TriggerSpikesRoutine()
     {
-        // Wait before starting
         yield return new WaitForSeconds(startDelay);
 
-        // Activate spikes one by one
-        for (int i = 0; i < spikes.Length; i++)
+        while (true) // Infinite loop
         {
-            ActivateSpike(spikes[i]);
-            yield return new WaitForSeconds(spikeInterval);
+            for (int i = 0; i < spikes.Length; i++)
+            {
+                ActivateSpike(spikes[i]);
+                yield return new WaitForSeconds(spikeInterval);
+            }
+
+            // Optional wait before repeating
+            yield return new WaitForSeconds(2f);
         }
     }
+
 
     private void ActivateSpike(GameObject spike)
     {
