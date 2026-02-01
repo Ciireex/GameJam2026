@@ -62,6 +62,10 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     // =========================
 
+    [Header("Death Animation")]
+    [SerializeField] private float deathRotateAngle = -90f;
+    [SerializeField] private float deathRotateDuration = 0.25f;
+
     private bool isFalling;
     private Vector3 originalVisualScale;
 
@@ -396,6 +400,8 @@ public class Player : MonoBehaviour
 
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
 
+        StartCoroutine(DeathRotateRoutine());
+
         if (!isRespawning)
             StartCoroutine(RespawnRoutine());
     }
@@ -482,6 +488,24 @@ public class Player : MonoBehaviour
 
         if (GameManager.Instance != null)
             GameManager.Instance.OnTimeIsUp -= GameManager_OnTimeIsUp;
+    }
+
+    private IEnumerator DeathRotateRoutine()
+    {
+        Transform visual = playerVisual != null ? playerVisual : transform;
+
+        Quaternion startRot = visual.rotation;
+        Quaternion endRot = Quaternion.Euler(0f, 0f, deathRotateAngle);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / Mathf.Max(0.01f, deathRotateDuration);
+            visual.rotation = Quaternion.Lerp(startRot, endRot, t);
+            yield return null;
+        }
+
+        visual.rotation = endRot;
     }
 
 
