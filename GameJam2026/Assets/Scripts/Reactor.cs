@@ -16,6 +16,9 @@ public class Reactor : MonoBehaviour
 
     private InputAction interactAction;
 
+    private GameObject cachedPlayerGO;
+
+
     private void Awake()
     {
         // Cachea la acción para no hacer FindAction cada frame
@@ -37,7 +40,11 @@ public class Reactor : MonoBehaviour
     private System.Collections.IEnumerator OpenThenLoad()
     {
         isOpening = true;
-         
+
+        cachedPlayerGO.SendMessage("SetControlFrozen", true, SendMessageOptions.DontRequireReceiver);
+        cachedPlayerGO.SendMessage("SetInvulnerable", true, SendMessageOptions.DontRequireReceiver);
+        cachedPlayerGO.SendMessage("ForceMaskOffVisualNoDrain", SendMessageOptions.DontRequireReceiver);
+
         popUp.SetActive(false);
 
         if (animator != null)
@@ -62,6 +69,7 @@ public class Reactor : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            cachedPlayerGO = collision.gameObject;
             if (!isOpening) popUp.SetActive(true);
             isPlayerColliding = true;
         }
