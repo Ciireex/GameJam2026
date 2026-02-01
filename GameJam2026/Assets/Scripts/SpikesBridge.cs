@@ -49,4 +49,6 @@ public class SpikesBridge : MonoBehaviour
         yield return new WaitForSeconds(spikeLifetime);
         spike.SetActive(false);
     }
+
+
 }

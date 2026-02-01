@@ -744,11 +744,14 @@ MonoBehaviour:
   wipeInDuration: 0.6
   wipeOutDuration: 0.6
   delayBeforeMaskBack: 1
-  playerVisual: {fileID: 0}
+  acidDrainMultiplier: 2
+  playerVisual: {fileID: 8414751891029254154}
   wipeEffect: {fileID: 0}
   animator: {fileID: 5086211307505924820}
   animMoveThreshold: 0.01
   playerSpriteRenderer: {fileID: 4438993114593335853}
+  deathRotateAngle: -90
+  deathRotateDuration: 0.25
 --- !u!61 &5980676484542219710
 BoxCollider2D:
   m_ObjectHideFlags: 0

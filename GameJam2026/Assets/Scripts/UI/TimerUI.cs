@@ -51,8 +51,6 @@ public class TimerUI : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeLeft / 60f);
         int seconds = Mathf.FloorToInt(timeLeft % 60f);
 
-        Debug.Log($"Time Left: {minutes}:{seconds}");
-
         string formatted = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         if (formatted.Length > 5)
