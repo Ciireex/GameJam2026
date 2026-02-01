@@ -449,7 +449,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1500786301326078579, guid: 818ceff8e8a4a624ebf6019f99c6ebd6, type: 3}
       propertyPath: levelTime
-      value: 1000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1500786301326078579, guid: 818ceff8e8a4a624ebf6019f99c6ebd6, type: 3}
       propertyPath: drainMultiplier
