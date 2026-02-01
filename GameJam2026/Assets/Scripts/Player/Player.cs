@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     [Tooltip("Delay entre la luz abierta (máscara quitada) y volver a máscara puesta.")]
     [SerializeField] private float delayBeforeMaskBack = 1f;
 
+    [Header("Acid")]
+    [SerializeField] private float acidDrainMultiplier = 2f;
+
+    private bool isOnAcid;
+
     [Header("PlayerVisual")]
     [SerializeField] private Transform playerVisual;
 
@@ -61,6 +66,10 @@ public class Player : MonoBehaviour
     // NEW: SpriteRenderer para flip (más robusto que localScale)
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     // =========================
+
+    [Header("Death Animation")]
+    [SerializeField] private float deathRotateAngle = -90f;
+    [SerializeField] private float deathRotateDuration = 0.25f;
 
     private bool isFalling;
     private Vector3 originalVisualScale;
@@ -266,10 +275,23 @@ public class Player : MonoBehaviour
 
     private void HandleHealthCountdown()
     {
-        if (!countdownActive || isDead)
+        if (isDead)
             return;
 
-        currentHealthTime -= Time.deltaTime * healthDrainSpeedMultiplier;
+        float drain = 0f;
+
+        // Daño normal por máscara
+        if (countdownActive)
+            drain += healthDrainSpeedMultiplier;
+
+        // Daño extra por ácido (siempre)
+        if (isOnAcid)
+            drain += healthDrainSpeedMultiplier * acidDrainMultiplier;
+
+        if (drain <= 0f)
+            return;
+
+        currentHealthTime -= Time.deltaTime * drain;
         healthSlider.SetValue(currentHealthTime);
 
         UpdatePlayerColor();
@@ -378,9 +400,21 @@ public class Player : MonoBehaviour
         {
             FallAndDie();
         }
-        if (other.CompareTag("Spike"))
+        else if (other.CompareTag("Spike"))
         {
             Kill();
+        }
+        else if (other.CompareTag("Acid"))
+        {
+            isOnAcid = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Acid"))
+        {
+            isOnAcid = false;
         }
     }
 
@@ -395,6 +429,8 @@ public class Player : MonoBehaviour
         Debug.Log("Player has died");
 
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+
+        StartCoroutine(DeathRotateRoutine());
 
         if (!isRespawning)
             StartCoroutine(RespawnRoutine());
@@ -482,6 +518,24 @@ public class Player : MonoBehaviour
 
         if (GameManager.Instance != null)
             GameManager.Instance.OnTimeIsUp -= GameManager_OnTimeIsUp;
+    }
+
+    private IEnumerator DeathRotateRoutine()
+    {
+        Transform visual = playerVisual != null ? playerVisual : transform;
+
+        Quaternion startRot = visual.rotation;
+        Quaternion endRot = Quaternion.Euler(0f, 0f, deathRotateAngle);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / Mathf.Max(0.01f, deathRotateDuration);
+            visual.rotation = Quaternion.Lerp(startRot, endRot, t);
+            yield return null;
+        }
+
+        visual.rotation = endRot;
     }
 
 
