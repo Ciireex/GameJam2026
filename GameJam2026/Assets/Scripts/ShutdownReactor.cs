@@ -1,12 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class ShutdownReactor : MonoBehaviour
+public class ShutDownReactor : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("UI (Optional)")]
     [SerializeField] private GameObject popUp;
+
+    [Header("Auto UI (if popUp is null)")]
+    [SerializeField] private bool showAutoPrompt = true;
+    [SerializeField] private string autoPromptText = "PULSA E";
+    [SerializeField] private Vector2 autoPromptOffset = new Vector2(0f, -120f);
+    [SerializeField] private int autoPromptFontSize = 40;
 
     [Header("Lights to shut down (assign your reactor lights here)")]
     [SerializeField] private Light2D[] reactorLights;
@@ -17,12 +24,21 @@ public class ShutdownReactor : MonoBehaviour
     [Header("Shutdown Settings")]
     [SerializeField] private float shutdownDuration = 2.0f;
 
+    [Header("After Shutdown")]
+    [Tooltip("Índice de la escena del Main Menu en Build Settings.")]
+    [SerializeField] private int mainMenuSceneIndex = 0;
+
+    [Tooltip("Usar transición del SceneController (si existe).")]
+    [SerializeField] private bool useTransition = true;
+
     private bool isPlayerColliding = false;
     private bool isShuttingDown = false;
 
-    private Player cachedPlayer;
-
+    // No dependemos de la clase Player
+    private GameObject cachedPlayerGO;
     private InputAction interactAction;
+
+    private bool showPromptNow = false;
 
     private void Awake()
     {
@@ -36,7 +52,7 @@ public class ShutdownReactor : MonoBehaviour
         if (interactAction != null &&
             interactAction.WasPressedThisDynamicUpdate() &&
             isPlayerColliding &&
-            cachedPlayer != null)
+            cachedPlayerGO != null)
         {
             StartCoroutine(ShutdownSequence());
         }
@@ -49,12 +65,14 @@ public class ShutdownReactor : MonoBehaviour
         if (popUp != null)
             popUp.SetActive(false);
 
-        // 1) Congelar player + quitar máscara visual + no perder vida
-        cachedPlayer.SetControlFrozen(true);
-        cachedPlayer.SetInvulnerable(true);
-        cachedPlayer.ForceMaskOffVisualNoDrain();
+        showPromptNow = false;
 
-        // 2) Si hay scripts que “pulsan” la luz, los apagamos para que no peleen con el lerp
+        // Congelar player + invulnerable + máscara off (sin acoplar)
+        cachedPlayerGO.SendMessage("SetControlFrozen", true, SendMessageOptions.DontRequireReceiver);
+        cachedPlayerGO.SendMessage("SetInvulnerable", true, SendMessageOptions.DontRequireReceiver);
+        cachedPlayerGO.SendMessage("ForceMaskOffVisualNoDrain", SendMessageOptions.DontRequireReceiver);
+
+        // Desactivar scripts de parpadeo
         if (lightControllersToDisable != null)
         {
             for (int i = 0; i < lightControllersToDisable.Length; i++)
@@ -64,7 +82,7 @@ public class ShutdownReactor : MonoBehaviour
             }
         }
 
-        // 3) Guardar intensidades iniciales
+        // Guardar intensidades iniciales
         float[] startInt = null;
         if (reactorLights != null && reactorLights.Length > 0)
         {
@@ -76,7 +94,7 @@ public class ShutdownReactor : MonoBehaviour
             }
         }
 
-        // 4) Apagado progresivo
+        // Apagado progresivo
         float t = 0f;
         shutdownDuration = Mathf.Max(0.01f, shutdownDuration);
 
@@ -89,6 +107,7 @@ public class ShutdownReactor : MonoBehaviour
                 for (int i = 0; i < reactorLights.Length; i++)
                 {
                     if (reactorLights[i] == null) continue;
+
                     float si = (startInt != null) ? startInt[i] : reactorLights[i].intensity;
                     reactorLights[i].intensity = Mathf.Lerp(si, 0f, a);
                 }
@@ -98,18 +117,29 @@ public class ShutdownReactor : MonoBehaviour
             yield return null;
         }
 
-        // 5) Asegurar 0
+        // Asegurar 0 y ELIMINAR luces
         if (reactorLights != null)
         {
             for (int i = 0; i < reactorLights.Length; i++)
             {
-                if (reactorLights[i] != null)
-                    reactorLights[i].intensity = 0f;
+                if (reactorLights[i] == null) continue;
+
+                reactorLights[i].intensity = 0f;
+
+                // Eliminar luz (más seguro que Destroy inmediato)
+                reactorLights[i].gameObject.SetActive(false);
             }
         }
 
-        // Aquí podrías: activar algo, abrir puerta, marcar objetivo, etc.
-        // De momento lo dejamos apagado y el player sigue congelado + sin máscara (como pediste).
+        // Ir al Main Menu
+        if (SceneController.Instance != null && useTransition)
+        {
+            SceneController.Instance.TransitionAndLoadScene(mainMenuSceneIndex, true, true);
+        }
+        else
+        {
+            SceneManager.LoadScene(mainMenuSceneIndex);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -117,11 +147,16 @@ public class ShutdownReactor : MonoBehaviour
         if (!collision.CompareTag("Player"))
             return;
 
-        cachedPlayer = collision.GetComponent<Player>();
+        cachedPlayerGO = collision.gameObject;
         isPlayerColliding = true;
 
-        if (!isShuttingDown && popUp != null)
-            popUp.SetActive(true);
+        if (!isShuttingDown)
+        {
+            if (popUp != null)
+                popUp.SetActive(true);
+
+            showPromptNow = (popUp == null && showAutoPrompt);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -130,9 +165,35 @@ public class ShutdownReactor : MonoBehaviour
             return;
 
         isPlayerColliding = false;
-        cachedPlayer = null;
+        cachedPlayerGO = null;
 
         if (popUp != null)
             popUp.SetActive(false);
+
+        showPromptNow = false;
+    }
+
+    // Texto simple "PULSA E" sin dependencias
+    private void OnGUI()
+    {
+        if (!showPromptNow || isShuttingDown) return;
+
+        GUIStyle style = new GUIStyle(GUI.skin.label);
+        style.alignment = TextAnchor.MiddleCenter;
+        style.fontSize = autoPromptFontSize;
+        style.fontStyle = FontStyle.Bold;
+        style.normal.textColor = Color.white;
+
+        float w = 600f;
+        float h = 80f;
+
+        Rect rect = new Rect(
+            (Screen.width - w) * 0.5f + autoPromptOffset.x,
+            (Screen.height - h) * 0.5f + autoPromptOffset.y,
+            w,
+            h
+        );
+
+        GUI.Label(rect, autoPromptText, style);
     }
 }

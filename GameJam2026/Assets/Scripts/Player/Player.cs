@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System;
 using System.Collections;
@@ -92,6 +91,13 @@ public class Player : MonoBehaviour
     // evita que el jugador pueda spamear máscara durante la intro
     private bool introPlaying;
 
+    // =========================
+    // NEW: Freeze / Invulnerable (para apagar reactor)
+    // =========================
+    private bool controlFrozen;
+    private bool invulnerable;
+    // =========================
+
 
     private void Start()
     {
@@ -184,7 +190,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!isDead && !isFalling && !introPlaying)
+        if (!isDead && !isFalling && !introPlaying && !controlFrozen)
         {
             moveInput = GameInput.Instance.GetMovmentVectorNormalized();
         }
@@ -278,6 +284,9 @@ public class Player : MonoBehaviour
         if (isDead)
             return;
 
+        if (invulnerable)
+            return;
+
         float drain = 0f;
 
         // Daño normal por máscara
@@ -312,6 +321,9 @@ public class Player : MonoBehaviour
     private void GameInput_OnChangeMaskAction(object sender, EventArgs e)
     {
         if (introPlaying || isDead || isFalling)
+            return;
+
+        if (controlFrozen)
             return;
 
         ToggleMask();
@@ -538,5 +550,36 @@ public class Player : MonoBehaviour
         visual.rotation = endRot;
     }
 
+    // =========================
+    // NEW: API pública para apagar reactor
+    // =========================
+    public void SetControlFrozen(bool frozen)
+    {
+        controlFrozen = frozen;
+        moveInput = Vector2.zero;
+        UpdateAnimatorParams(Vector2.zero);
+    }
 
+    public void SetInvulnerable(bool value)
+    {
+        invulnerable = value;
+    }
+
+    public void ForceMaskOffVisualNoDrain()
+    {
+        // Queremos “sin máscara” visual + que NO baje vida
+        isMaskOn = false;
+        countdownActive = false;
+
+        UpdateLightRadius();
+
+        if (healthSlider)
+        {
+            healthSlider.SetShaderShake(1f);
+            healthSlider.ChangeHealthStateIcon();
+        }
+
+        UpdateAnimatorParams(Vector2.zero);
+    }
+    // =========================
 }
