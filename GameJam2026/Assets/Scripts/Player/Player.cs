@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     [Tooltip("Delay entre la luz abierta (máscara quitada) y volver a máscara puesta.")]
     [SerializeField] private float delayBeforeMaskBack = 1f;
 
+    [Header("Acid")]
+    [SerializeField] private float acidDrainMultiplier = 2f;
+
+    private bool isOnAcid;
+
     [Header("PlayerVisual")]
     [SerializeField] private Transform playerVisual;
 
@@ -270,10 +275,23 @@ public class Player : MonoBehaviour
 
     private void HandleHealthCountdown()
     {
-        if (!countdownActive || isDead)
+        if (isDead)
             return;
 
-        currentHealthTime -= Time.deltaTime * healthDrainSpeedMultiplier;
+        float drain = 0f;
+
+        // Daño normal por máscara
+        if (countdownActive)
+            drain += healthDrainSpeedMultiplier;
+
+        // Daño extra por ácido (siempre)
+        if (isOnAcid)
+            drain += healthDrainSpeedMultiplier * acidDrainMultiplier;
+
+        if (drain <= 0f)
+            return;
+
+        currentHealthTime -= Time.deltaTime * drain;
         healthSlider.SetValue(currentHealthTime);
 
         UpdatePlayerColor();
@@ -382,9 +400,21 @@ public class Player : MonoBehaviour
         {
             FallAndDie();
         }
-        if (other.CompareTag("Spike"))
+        else if (other.CompareTag("Spike"))
         {
             Kill();
+        }
+        else if (other.CompareTag("Acid"))
+        {
+            isOnAcid = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Acid"))
+        {
+            isOnAcid = false;
         }
     }
 

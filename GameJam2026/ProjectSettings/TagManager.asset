@@ -8,6 +8,7 @@ TagManager:
   - Spike
   - URP
   - Door
+  - Acid
   layers:
   - Default
   - TransparentFX
