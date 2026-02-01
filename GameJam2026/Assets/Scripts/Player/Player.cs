@@ -462,8 +462,8 @@ public class Player : MonoBehaviour
         if (isDead || isFalling)
             return;
 
-        StartCoroutine(FallRoutine());
         AudioManager.Instance.PlaySFX("death_tile", 1f, UnityEngine.Random.Range(0.85f, 1f));
+        StartCoroutine(FallRoutine());
     }
 
     private IEnumerator FallRoutine()

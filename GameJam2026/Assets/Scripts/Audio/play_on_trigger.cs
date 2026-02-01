@@ -11,7 +11,7 @@ public class PlayExternalAudioOnTrigger2D : MonoBehaviour
         {
             if (externalAudioSource != null)
             {
-                externalAudioSource.Play();
+                AudioManager.Instance.PlaySFX("tile_break");
             }
             else
             {
