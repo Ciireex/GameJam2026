@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
     public void XFadeToMusicTrack(string clipName, string mixerGroup, float duration = 1f)
     {
+        musicAudioSource.volume = 1f;
         StartCoroutine(Crossfade(musicAudioSource, clipName, mixerGroup, mixer, duration));
     }
 
