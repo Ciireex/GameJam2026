@@ -155,6 +155,9 @@ public class Player : MonoBehaviour
 
         // Intro: Wipe + animación de luz (abre, espera y vuelve a cerrar)
         StartCoroutine(IntroSequence());
+
+        // Music
+        AudioManager.Instance.ChangeMusicTrack("music_yes_mask", "Music no", true, true);
     }
 
     private IEnumerator IntroSequence()
@@ -341,6 +344,12 @@ public class Player : MonoBehaviour
 
         // NEW: refresca el bool MaskOn al momento
         UpdateAnimatorParams(moveInput);
+
+        // Music
+        if (IsMaskOn())
+            AudioManager.Instance.ChangeMusicTrack("music_yes_mask", "Music yes", true, false);
+        else
+            AudioManager.Instance.ChangeMusicTrack("music_no_mask", "Music no", true, false);
 
         Debug.Log("Mask is " + IsMaskOn());
     }
