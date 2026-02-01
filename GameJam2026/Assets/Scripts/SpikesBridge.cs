@@ -6,7 +6,7 @@ public class SpikesBridge : MonoBehaviour
     [Header("Timing")]
     [SerializeField] private float startDelay = 15f;
     [SerializeField] private float spikeInterval = 0.5f;  // Time between spikes
-    [SerializeField] private float spikeLifetime = 5f;
+    [SerializeField] private float spikeLifetime = 1f;
     [SerializeField] private GameObject[] spikes; // Assign all spikes in Inspector
 
     private void Start()
@@ -29,6 +29,7 @@ public class SpikesBridge : MonoBehaviour
             for (int i = 0; i < spikes.Length; i++)
             {
                 ActivateSpike(spikes[i]);
+                AudioManager.Instance.PlaySFX("spikes", 1f, Random.Range(0.8f, 1f));
                 yield return new WaitForSeconds(spikeInterval);
             }
 
