@@ -101,8 +101,6 @@ public class AudioManager : MonoBehaviour
         AudioSource sfxAudioSource = sfxGO.AddComponent<AudioSource>();
         foreach (AudioClip clip in sfx)
         {
-            Debug.Log("Playing SFX: " + clip);
-
             if (clip.name == sfxName)
             {
                 sfxAudioSource.clip = clip;
