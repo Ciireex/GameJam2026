@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9025935478817042419}
   - component: {fileID: 1996298353439221493}
   - component: {fileID: 7447157373244221059}
-  - component: {fileID: 4039531065344339158}
   m_Layer: 0
   m_Name: ResumeMainMenu
   m_TagString: Untagged
@@ -121,36 +120,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1996298353439221493}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4039531065344339158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288222078904149851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:6726d5f1399eb814797dcd539bb73a1a
-    m_TableEntryReference:
-      m_KeyId: 224457242173440
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6385147900568147775}
-        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-        m_MethodName: SetText
-        m_Mode: 0
+      - m_Target: {fileID: 5771734237911229417}
+        m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
+        m_MethodName: GoToMainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -158,10 +132,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
+        m_CallState: 0
 --- !u!1 &2530109741558734207
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +335,6 @@ GameObject:
   - component: {fileID: 2434095558696410521}
   - component: {fileID: 6831754916366552041}
   - component: {fileID: 7709555111602947861}
-  - component: {fileID: 8666657624002477824}
   m_Layer: 0
   m_Name: GameOverText
   m_TagString: Untagged
@@ -491,46 +461,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8666657624002477824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894245953445983611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:6726d5f1399eb814797dcd539bb73a1a
-    m_TableEntryReference:
-      m_KeyId: 224386706563072
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7709555111602947861}
-        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-        m_MethodName: SetText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &4321982303620896395
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +610,6 @@ GameObject:
   - component: {fileID: 701885374846121769}
   - component: {fileID: 2319335283566932388}
   - component: {fileID: 655758097372107126}
-  - component: {fileID: 5225200248285982984}
   m_Layer: 0
   m_Name: ResumeBtn
   m_TagString: Untagged
@@ -789,36 +718,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2319335283566932388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5225200248285982984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5739986072406560052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:6726d5f1399eb814797dcd539bb73a1a
-    m_TableEntryReference:
-      m_KeyId: 224310982598656
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4941064690895954188}
-        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-        m_MethodName: SetText
-        m_Mode: 0
+      - m_Target: {fileID: 5771734237911229417}
+        m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -826,10 +730,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
+        m_CallState: 0
 --- !u!1 &8822341175156654215
 GameObject:
   m_ObjectHideFlags: 0

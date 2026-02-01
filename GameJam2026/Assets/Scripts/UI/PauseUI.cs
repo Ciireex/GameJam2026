@@ -34,7 +34,7 @@ public class PauseUI : MonoBehaviour
         TogglePause();
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused;
         ActivateChildren(isPaused);
@@ -50,7 +50,7 @@ public class PauseUI : MonoBehaviour
         }
     }
 
-    private void Resume()
+    public void Resume()
     {
         if (!isPaused) return;
 
@@ -59,9 +59,14 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void GoToMainMenu()
+    public void GoToMainMenu()
     {
         Time.timeScale = 1f; // importante antes de cambiar escena
         SceneManager.LoadScene("Scenes/MainMenu"); // asegúrate que coincide
+    }
+
+    public void TEST()
+    {
+        Debug.Log("TEST PAUSE UI");
     }
 }
