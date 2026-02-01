@@ -445,7 +445,7 @@ public class Player : MonoBehaviour
             return;
         
         if (!isFalling)
-            AudioManager.Instance.PlaySFX("death_3", 1f, UnityEngine.Random.Range(0.8f, 1f));
+            AudioManager.Instance.PlaySFX("death_3", 1.5f, UnityEngine.Random.Range(0.8f, 1f));
 
         isDead = true;
         countdownActive = false;
