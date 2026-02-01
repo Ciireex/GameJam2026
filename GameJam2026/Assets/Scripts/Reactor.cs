@@ -21,7 +21,7 @@ public class Reactor : MonoBehaviour
 
     private void Awake()
     {
-        // Cachea la acción para no hacer FindAction cada frame
+        // Cachea la acciï¿½n para no hacer FindAction cada frame
         interactAction = InputSystem.actions.FindAction("Player/Interact");
     }
 
@@ -57,7 +57,7 @@ public class Reactor : MonoBehaviour
             while (!animator.GetCurrentAnimatorStateInfo(0).IsName(openStateName))
                 yield return null;
 
-            // Espera a que termine la animación (normalizedTime >= 1)
+            // Espera a que termine la animaciï¿½n (normalizedTime >= 1)
             while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
                 yield return null;
         }

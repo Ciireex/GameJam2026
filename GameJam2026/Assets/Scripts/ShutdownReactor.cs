@@ -19,17 +19,17 @@ public class ShutDownReactor : MonoBehaviour
     [Header("Lights to shut down (assign your reactor lights here)")]
     [SerializeField] private Light2D[] reactorLights;
 
-    [Tooltip("Si tus luces tienen scripts tipo EmergencyLight que cambian la intensidad, arrástralos aquí para desactivarlos al apagar.")]
+    [Tooltip("Si tus luces tienen scripts tipo EmergencyLight que cambian la intensidad, arrï¿½stralos aquï¿½ para desactivarlos al apagar.")]
     [SerializeField] private MonoBehaviour[] lightControllersToDisable;
 
     [Header("Shutdown Settings")]
     [SerializeField] private float shutdownDuration = 2.0f;
 
     [Header("After Shutdown")]
-    [Tooltip("Índice de la escena del Main Menu en Build Settings.")]
+    [Tooltip("ï¿½ndice de la escena del Main Menu en Build Settings.")]
     [SerializeField] private int mainMenuSceneIndex = 0;
 
-    [Tooltip("Usar transición del SceneController (si existe).")]
+    [Tooltip("Usar transiciï¿½n del SceneController (si existe).")]
     [SerializeField] private bool useTransition = true;
 
     //FinalAnimation
@@ -76,7 +76,7 @@ public class ShutDownReactor : MonoBehaviour
 
         showPromptNow = false;
 
-        // Congelar player + invulnerable + máscara off (sin acoplar)
+        // Congelar player + invulnerable + mï¿½scara off (sin acoplar)
         cachedPlayerGO.SendMessage("SetControlFrozen", true, SendMessageOptions.DontRequireReceiver);
         cachedPlayerGO.SendMessage("SetInvulnerable", true, SendMessageOptions.DontRequireReceiver);
         cachedPlayerGO.SendMessage("ForceMaskOffVisualNoDrain", SendMessageOptions.DontRequireReceiver);
@@ -105,6 +105,9 @@ public class ShutDownReactor : MonoBehaviour
                     startInt[i] = reactorLights[i].intensity;
             }
         }
+
+        // Sonido de apagado
+        AudioManager.Instance.PlaySFX("reactor_shut");
 
         // Apagado progresivo
         float t = 0f;
@@ -138,7 +141,7 @@ public class ShutDownReactor : MonoBehaviour
 
                 reactorLights[i].intensity = 0f;
 
-                // Eliminar luz (más seguro que Destroy inmediato)
+                // Eliminar luz (mï¿½s seguro que Destroy inmediato)
                 reactorLights[i].gameObject.SetActive(false);
             }
         }
