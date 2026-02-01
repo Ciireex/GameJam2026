@@ -9,6 +9,7 @@ TagManager:
   - URP
   - Door
   - Acid
+  - Reactor
   layers:
   - Default
   - TransparentFX
