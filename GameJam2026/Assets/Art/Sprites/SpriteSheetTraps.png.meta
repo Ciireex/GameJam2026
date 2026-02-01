@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 0ee44e777009b6b41a90b727e7705bd5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6112142946154942491
+    second: SpriteSheetTraps_0
+  - first:
+      213: -2420784584417582747
+    second: SpriteSheetTraps_1
+  - first:
+      213: -2285043790583180368
+    second: SpriteSheetTraps_2
+  - first:
+      213: 9213166485844655006
+    second: SpriteSheetTraps_3
+  - first:
+      213: 8477692667381348256
+    second: SpriteSheetTraps_4
+  - first:
+      213: -3620420287896370728
+    second: SpriteSheetTraps_5
+  - first:
+      213: -5680608268699680178
+    second: SpriteSheetTraps_6
+  - first:
+      213: -805566039956946907
+    second: SpriteSheetTraps_7
+  - first:
+      213: 1479160126741751127
+    second: SpriteSheetTraps_8
+  - first:
+      213: 8778050177040403366
+    second: SpriteSheetTraps_9
+  - first:
+      213: 1089752401120742372
+    second: SpriteSheetTraps_10
+  - first:
+      213: 2564753353108928099
+    second: SpriteSheetTraps_11
+  - first:
+      213: 8962160523470475910
+    second: SpriteSheetTraps_12
+  - first:
+      213: 1749007905500919182
+    second: SpriteSheetTraps_13
+  - first:
+      213: -5042422390683021932
+    second: SpriteSheetTraps_14
+  - first:
+      213: -5506947941014168622
+    second: SpriteSheetTraps_15
+  - first:
+      213: -4141688928519267787
+    second: SpriteSheetTraps_16
+  - first:
+      213: 6071057382887872591
+    second: SpriteSheetTraps_17
+  - first:
+      213: -1371976588590872323
+    second: SpriteSheetTraps_18
+  - first:
+      213: -6299431368609607755
+    second: SpriteSheetTraps_19
+  - first:
+      213: -1416463505701143805
+    second: SpriteSheetTraps_20
+  - first:
+      213: -4995331785918955658
+    second: SpriteSheetTraps_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteSheetTraps_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 96
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef660ebf5e4d2ba0800000000000000
+      internalID: -6112142946154942491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 96
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5616c001f35a76ed0800000000000000
+      internalID: -2420784584417582747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 99
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b3d31677c4e940e0800000000000000
+      internalID: -2285043790583180368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_3
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 99
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bfd4dfa1ebbdf70800000000000000
+      internalID: 9213166485844655006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_4
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 98
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a7f2327090d6a570800000000000000
+      internalID: 8477692667381348256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 98
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1c1521eeea1cdc0800000000000000
+      internalID: -3620420287896370728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 67
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e42420470ec6a21b0800000000000000
+      internalID: -5680608268699680178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_7
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 71
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5208f3964fd02d4f0800000000000000
+      internalID: -805566039956946907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 71
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7552d506c48078410800000000000000
+      internalID: 1479160126741751127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_9
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 76
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab4c0fb026e1d970800000000000000
+      internalID: 8778050177040403366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 64
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb4ee9f8049f1f00800000000000000
+      internalID: 1089752401120742372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 224
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 366bc840695d79320800000000000000
+      internalID: 2564753353108928099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 36
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6829c75338dff5c70800000000000000
+      internalID: 8962160523470475910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_13
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 35
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e857bb46c69b54810800000000000000
+      internalID: 1749007905500919182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_14
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 36
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49dccd33d87b50ab0800000000000000
+      internalID: -5042422390683021932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_15
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 36
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db184356046393b0800000000000000
+      internalID: -5506947941014168622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_16
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 36
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ad075fcd3c586c0800000000000000
+      internalID: -4141688928519267787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f485b0e168ab04450800000000000000
+      internalID: 6071057382887872591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df883eccf82c5fce0800000000000000
+      internalID: -1371976588590872323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf421bcb8ce398a0800000000000000
+      internalID: -6299431368609607755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30bf06142f5b75ce0800000000000000
+      internalID: -1416463505701143805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetTraps_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f351505340daab0800000000000000
+      internalID: -4995331785918955658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpriteSheetTraps_0: -6112142946154942491
+      SpriteSheetTraps_1: -2420784584417582747
+      SpriteSheetTraps_10: 1089752401120742372
+      SpriteSheetTraps_11: 2564753353108928099
+      SpriteSheetTraps_12: 8962160523470475910
+      SpriteSheetTraps_13: 1749007905500919182
+      SpriteSheetTraps_14: -5042422390683021932
+      SpriteSheetTraps_15: -5506947941014168622
+      SpriteSheetTraps_16: -4141688928519267787
+      SpriteSheetTraps_17: 6071057382887872591
+      SpriteSheetTraps_18: -1371976588590872323
+      SpriteSheetTraps_19: -6299431368609607755
+      SpriteSheetTraps_2: -2285043790583180368
+      SpriteSheetTraps_20: -1416463505701143805
+      SpriteSheetTraps_21: -4995331785918955658
+      SpriteSheetTraps_3: 9213166485844655006
+      SpriteSheetTraps_4: 8477692667381348256
+      SpriteSheetTraps_5: -3620420287896370728
+      SpriteSheetTraps_6: -5680608268699680178
+      SpriteSheetTraps_7: -805566039956946907
+      SpriteSheetTraps_8: 1479160126741751127
+      SpriteSheetTraps_9: 8778050177040403366
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
