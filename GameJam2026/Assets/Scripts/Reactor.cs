@@ -37,7 +37,7 @@ public class Reactor : MonoBehaviour
     private System.Collections.IEnumerator OpenThenLoad()
     {
         isOpening = true;
-
+         
         popUp.SetActive(false);
 
         if (animator != null)
