@@ -273,6 +273,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &240825506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7243450395417196063, guid: 97129d2352dffdc4e941347806a59158, type: 3}
+  m_PrefabInstance: {fileID: 1899109479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &240825507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5838426470533899264, guid: 97129d2352dffdc4e941347806a59158, type: 3}
+  m_PrefabInstance: {fileID: 1899109479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240825506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+--- !u!114 &240825509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240825506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b45bb31c7de9040a3a4f1a926522e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BloomOscillator
+  globalVolume: {fileID: 240825507}
+  speed: 1
+  minIntensity: 0.1
+  maxIntensity: 1
 --- !u!1 &263057651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,11 +1980,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4324377600399382161, guid: 97129d2352dffdc4e941347806a59158, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.93115
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4324377600399382161, guid: 97129d2352dffdc4e941347806a59158, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04607
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4324377600399382161, guid: 97129d2352dffdc4e941347806a59158, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2005,7 +2037,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7243450395417196063, guid: 97129d2352dffdc4e941347806a59158, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 240825509}
   m_SourcePrefab: {fileID: 100100000, guid: 97129d2352dffdc4e941347806a59158, type: 3}
 --- !u!1 &2047267394
 GameObject:
