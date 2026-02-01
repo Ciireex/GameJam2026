@@ -49,6 +49,9 @@ public class ShutDownReactor : MonoBehaviour
 
     private bool showPromptNow = false;
 
+    // Explosion
+    [SerializeField] private GameObject explosionPrefab;
+
     private void Awake()
     {
         interactAction = InputSystem.actions.FindAction("Player/Interact");
@@ -154,7 +157,9 @@ public class ShutDownReactor : MonoBehaviour
 
         yield return new WaitForSeconds(2f); // <-- wait  a second (adjust as needed)
         
+        // Explosion and light
         l.SetActive(true);
+        Instantiate(explosionPrefab, transform);
         AudioManager.Instance.MusicAudioSource.Stop();
         AudioManager.Instance.PlaySFX("high_pitch", 1.5f);
 
