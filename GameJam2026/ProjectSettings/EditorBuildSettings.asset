@@ -24,8 +24,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
     guid: b5a3387c13a241c4f814774708d3c97f
   - enabled: 1
+    path: Assets/Scenes/Level4Cerales.unity
+    guid: 5797831a2b3b1a84c9ae98e6440d816e
+  - enabled: 1
     path: Assets/Scenes/EndScene.unity
-    guid: fd0c32eaed4db40e7b34c15624040af3
+    guid: 62752a6da37e4c64e92d48ece1f8ef0a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3805063e005895c40b86cea109e0e647, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
