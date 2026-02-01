@@ -443,6 +443,9 @@ public class Player : MonoBehaviour
     {
         if (isDead)
             return;
+        
+        if (!isFalling)
+            AudioManager.Instance.PlaySFX("death_3", 1f, UnityEngine.Random.Range(0.8f, 1f));
 
         isDead = true;
         countdownActive = false;
@@ -462,7 +465,7 @@ public class Player : MonoBehaviour
         if (isDead || isFalling)
             return;
 
-        AudioManager.Instance.PlaySFX("death_tile", 1f, UnityEngine.Random.Range(0.85f, 1f));
+        AudioManager.Instance.PlaySFX("death_tile", 0.7f, UnityEngine.Random.Range(0.85f, 1f));
         StartCoroutine(FallRoutine());
     }
 

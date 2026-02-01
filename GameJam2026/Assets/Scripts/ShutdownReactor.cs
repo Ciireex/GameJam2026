@@ -146,6 +146,9 @@ public class ShutDownReactor : MonoBehaviour
             }
         }
 
+        // Happy music
+        AudioManager.Instance.XFadeToMusicTrack("music_credits", "Main Menu music");
+
         // Zoom a jugador
         yield return StartCoroutine(ZoomToPlayer());
 
