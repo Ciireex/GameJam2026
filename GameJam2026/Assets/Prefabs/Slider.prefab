@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6272771503801108446, guid: 91bc45b1201d04222a42d0d79163d229, type: 3}
+  m_Sprite: {fileID: 3980140487562858156, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -269,8 +269,8 @@ MonoBehaviour:
   slider: {fileID: 2870393925949203397}
   fillMaterial: {fileID: -876546973899608171, guid: 98403706a39454b7d8ffc84175425b84, type: 3}
   healthStateIcon: {fileID: 6410757486875430004}
-  safeSprite: {fileID: -6272771503801108446, guid: 91bc45b1201d04222a42d0d79163d229, type: 3}
-  dyingSprite: {fileID: -2869334171946279388, guid: c7386d3979f924803982c34f6c21dc5a, type: 3}
+  safeSprite: {fileID: 3980140487562858156, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
+  dyingSprite: {fileID: -2906203513720773286, guid: c7ba75072b1bf0f488cec68a0a8fad13, type: 3}
 --- !u!222 &4134008051285268352
 CanvasRenderer:
   m_ObjectHideFlags: 0
