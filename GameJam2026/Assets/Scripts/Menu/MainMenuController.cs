@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
         optionsPanel.SetActive(true);
         mainPanel.SetActive(false);
         AudioManager.Instance.PlaySFX("interface_select");
-        AudioManager.Instance.ChangeMusicTrack("music_credits", "Main Menu music", false, true);
+        AudioManager.Instance.XFadeToMusicTrack("music_credits", "Main Menu music");
     }
 
     public void CloseOptions()
@@ -37,7 +37,7 @@ public class MainMenuController : MonoBehaviour
         optionsPanel.SetActive(false);
         mainPanel.SetActive(true);
         AudioManager.Instance.PlaySFX("interface_select");
-        AudioManager.Instance.ChangeMusicTrack("main_menu_music", "Main Menu music", false, true);
+        AudioManager.Instance.XFadeToMusicTrack("main_menu_music", "Main Menu music");
     }
 
     public void ExitGame()

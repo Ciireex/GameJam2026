@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IntroSequence());
 
         // Music
-        AudioManager.Instance.ChangeMusicTrack("music_yes_mask", "Music no", true, true);
+        AudioManager.Instance.XFadeToMusicTrack("music_yes_mask", "Music no");
     }
 
     private IEnumerator IntroSequence()
@@ -347,9 +347,9 @@ public class Player : MonoBehaviour
 
         // Music
         if (IsMaskOn())
-            AudioManager.Instance.ChangeMusicTrack("music_yes_mask", "Music yes", true, false);
+            AudioManager.Instance.XFadeToMusicTrack("music_yes_mask", "Music yes");
         else
-            AudioManager.Instance.ChangeMusicTrack("music_no_mask", "Music no", true, false);
+            AudioManager.Instance.XFadeToMusicTrack("music_no_mask", "Music no");
 
         Debug.Log("Mask is " + IsMaskOn());
     }
