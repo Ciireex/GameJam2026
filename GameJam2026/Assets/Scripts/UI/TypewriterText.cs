@@ -49,6 +49,7 @@ public class TypewriterText : MonoBehaviour
             else if (c == '\n')
                 delay *= 10f;
 
+            AudioManager.Instance.PlaySFX("interface_select", 0.8f, Random.Range(0.5f, 0.7f));
             yield return new WaitForSeconds(delay);
         }
 
