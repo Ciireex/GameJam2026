@@ -582,4 +582,24 @@ public class Player : MonoBehaviour
         UpdateAnimatorParams(Vector2.zero);
     }
     // =========================
+
+
+
+    public void LookAtCamera()
+    {
+        if (animator == null) return;
+
+        // Set animation parameters to look forward
+        lastAnimDir = Vector2.down; // adjust if your "look camera" direction is different
+        animator.SetFloat("DirX", lastAnimDir.x);
+        animator.SetFloat("DirY", lastAnimDir.y);
+
+        // Make sure sprite is not flipped
+        if (playerSpriteRenderer != null)
+            playerSpriteRenderer.flipX = false;
+
+        // Stop movement
+        moveInput = Vector2.zero;
+        UpdateAnimatorParams(Vector2.zero);
+    }
 }

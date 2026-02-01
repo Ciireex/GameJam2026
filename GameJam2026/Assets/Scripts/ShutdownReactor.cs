@@ -80,6 +80,9 @@ public class ShutDownReactor : MonoBehaviour
         cachedPlayerGO.SendMessage("SetInvulnerable", true, SendMessageOptions.DontRequireReceiver);
         cachedPlayerGO.SendMessage("ForceMaskOffVisualNoDrain", SendMessageOptions.DontRequireReceiver);
 
+        cachedPlayerGO.SendMessage("LookAtCamera", SendMessageOptions.DontRequireReceiver);
+
+
         // Desactivar scripts de parpadeo
         if (lightControllersToDisable != null)
         {
@@ -138,6 +141,8 @@ public class ShutDownReactor : MonoBehaviour
                 reactorLights[i].gameObject.SetActive(false);
             }
         }
+
+        yield return new WaitForSeconds(1f); // <-- wait  a second (adjust as needed)
 
         // Zoom a jugador
         yield return StartCoroutine(ZoomToPlayer());

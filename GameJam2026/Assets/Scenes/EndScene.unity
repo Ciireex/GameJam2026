@@ -1105,8 +1105,8 @@ MonoBehaviour:
   mainMenuSceneIndex: 0
   useTransition: 1
   vCam: {fileID: 637554600}
-  zoomDuration: 1
-  zoomFOV: 1
+  zoomDuration: 3
+  zoomFOV: 0.8
 --- !u!1001 &222173590
 PrefabInstance:
   m_ObjectHideFlags: 0
