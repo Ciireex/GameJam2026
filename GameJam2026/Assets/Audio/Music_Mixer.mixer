@@ -72,8 +72,10 @@ AudioMixerSnapshotController:
     c5468f3b75f86491f93ba660fad6666c: -9
     bc371a4be359b4b2991d2a243992df27: 0.23288241
     2db6a99b753c947aa862a5da3f7fc9bf: 955
+    1cf72a2c2cce643719874fb25438c5b1: 20
+    d87174fc8e861461e9f30aaf19439dbe: -7.8940816
     4a59765d553284e749db2d95b44ba923: -17.29471
-    93c2f50e61e024cb9b56dedb865bc580: -13.0627575
+    93c2f50e61e024cb9b56dedb865bc580: -0.16685188
     79b7d7be18a80469082ced7bb823e7f7: 0
   m_TransitionOverrides: {}
 --- !u!244 &-6732932823207313613
@@ -286,6 +288,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-174219651126155531
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 3b017b9c50b7a46f89548ba61ca9401b
+  m_EffectName: Attenuation
+  m_MixLevel: bead58a04411e4a4ea77e6cfb4fc2784
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-26696856087591122
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -338,6 +354,7 @@ AudioMixerController:
     - 7f075a78be5624ea2b293a3c8b719097
     - a5237ea5bc82649aaa3fc3eef76f9017
     - fbecaca8a769e4ca1b3a5259ea2dc3f4
+    - 89d3a5def58db4c37a5cc71f71e6dd2f
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: -7052305383036485669}
@@ -455,6 +472,7 @@ AudioMixerGroupController:
   - {fileID: 4037176699388943614}
   - {fileID: 8548000838375525572}
   - {fileID: 4412337047848656805}
+  - {fileID: 6701849457076271669}
   m_Volume: 70eaeece2a71840569a1234548bf188c
   m_Pitch: 8e4f1860ae24f4378b0b797fb64cb80c
   m_Send: 00000000000000000000000000000000
@@ -732,6 +750,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &6701849457076271669
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Spikes
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 89d3a5def58db4c37a5cc71f71e6dd2f
+  m_Children: []
+  m_Volume: 1cf72a2c2cce643719874fb25438c5b1
+  m_Pitch: 8d90b9264e9e14aa7aef13d511b65ea3
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -174219651126155531}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &8475772543088992441
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
