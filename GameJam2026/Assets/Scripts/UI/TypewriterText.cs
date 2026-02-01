@@ -8,6 +8,9 @@ public class TypewriterText : MonoBehaviour
     [SerializeField] private GameObject controlBckg;
     [SerializeField] private GameObject controlsText;
     [SerializeField] private GameObject continueBtn;
+
+    [SerializeField] private float fadeDuration = 1f;
+
     [TextArea(3, 10)]
     public string fullText;
 
@@ -55,11 +58,39 @@ public class TypewriterText : MonoBehaviour
     private void ShowControls()
     {
         if (controlBckg != null)
-            controlBckg.SetActive(true);
+            StartCoroutine(FadeIn(controlBckg));
+
         if (controlsText != null)
-            controlsText.SetActive(true);
+            StartCoroutine(FadeIn(controlsText));
+
         if (continueBtn != null)
-            continueBtn.SetActive(true);
+            StartCoroutine(FadeIn(continueBtn));
+    }
+
+
+    private IEnumerator FadeIn(GameObject obj)
+    {
+        CanvasGroup cg = obj.GetComponent<CanvasGroup>();
+        if (cg == null)
+            yield break;
+
+        obj.SetActive(true);
+
+        cg.alpha = 0f;
+        cg.interactable = false;
+        cg.blocksRaycasts = false;
+
+        float t = 0f;
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+        cg.interactable = true;
+        cg.blocksRaycasts = true;
     }
 
 }
